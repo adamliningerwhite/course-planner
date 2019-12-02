@@ -1,3 +1,15 @@
+% This file contains a list of generic classes and their info
+% We will use this to test basic functionalities of our program
+
+department(csci)
+department(math)
+department(science)
+department(soc_science)
+department(humanities)
+department(art)
+
+% -----------------------------------------------
+
 % Things that each class needs to have:
 %   1. Name
 %   2. Start time
@@ -8,7 +20,6 @@
 % TODO Class prerequisites
 % TODO Measure of class dificulty??
 % TODO Major/minor requirements
-
 
 % GENERIC CS CLASSES
 % MWF Classes
@@ -27,6 +38,7 @@ meets(generic_cs3, mon, 11.0, 11.83)
 meets(generic_cs3, wed, 11.0, 11.83)
 meets(generic_cs3, fri, 11.0, 11.83)
 
+% MW Classes
 class(generic_cs4, csci)
 meets(generic_cs4, mon, 13.0, 14.5)
 meets(generic_cs4, wed, 13.0, 14.5)
@@ -74,6 +86,7 @@ meets(generic_math3, mon, 11.0, 11.83)
 meets(generic_math3, wed, 11.0, 11.83)
 meets(generic_math3, fri, 11.0, 11.83)
 
+% MW classes
 class(generic_math4, math)
 meets(generic_math4, mon, 13.0, 14.5)
 meets(generic_math4, wed, 13.0, 14.5)
@@ -121,6 +134,7 @@ meets(generic_science3, mon, 11.0, 11.83)
 meets(generic_science3, wed, 11.0, 11.83)
 meets(generic_science3, fri, 11.0, 11.83)
 
+% MW Classes
 class(generic_science4, science)
 meets(generic_science4, mon, 13.0, 14.5)
 meets(generic_science4, wed, 13.0, 14.5)
@@ -168,6 +182,7 @@ meets(generic_soc_science3, mon, 11.0, 11.83)
 meets(generic_soc_science3, wed, 11.0, 11.83)
 meets(generic_soc_science3, fri, 11.0, 11.83)
 
+% MW Classes
 class(generic_soc_science4, soc_science)
 meets(generic_soc_science4, mon, 13.0, 14.5)
 meets(generic_soc_science4, wed, 13.0, 14.5)
@@ -215,6 +230,7 @@ meets(generic_humanities3, mon, 11.0, 11.83)
 meets(generic_humanities3, wed, 11.0, 11.83)
 meets(generic_humanities3, fri, 11.0, 11.83)
 
+% MW Classes
 class(generic_humanities4, humanities)
 meets(generic_humanities4, mon, 13.0, 14.5)
 meets(generic_humanities4, wed, 13.0, 14.5)
@@ -262,6 +278,7 @@ meets(generic_art3, mon, 11.0, 11.83)
 meets(generic_art3, wed, 11.0, 11.83)
 meets(generic_art3, fri, 11.0, 11.83)
 
+% MW Classes
 class(generic_art4, art)
 meets(generic_art4, mon, 13.0, 14.5)
 meets(generic_art4, wed, 13.0, 14.5)
