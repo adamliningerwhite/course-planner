@@ -1,5 +1,12 @@
-% This file uses the student's schedule preferences and
-% the list of available classes to automatically generate a schedule
+% Our schedule chooser.
+%
+% This file generates valid schedules from the master list of classes
+% and makes sure that the student's scheduling preferences are
+% satisfied (if possible).
+% We make sure not to include previously taken classes or violate class
+% prerequisites. Additionally, our program seeks to maximize the number
+% of major requirements fulfilled each semester. 
+%
 
 
 % Should this number be coming from a different file?
@@ -11,7 +18,7 @@ class_num {pick(Class) : class(Class)} class_num.
 
 
 %---------------------------------------
-% ADD CONSTRAINTS
+% SCHEDULING CONSTRAINTS
 
 % C1: Don't allow class times to overlap
 :- pick(C1), pick(C2),
@@ -25,4 +32,6 @@ class_num {pick(Class) : class(Class)} class_num.
 
 % C3: Make sure that no prerequisites are violated
 
-% C4: 
+% C4: Make sure that schedules don't include previously taken classes
+
+% C5: Maximize the number of major requirements satisfied
