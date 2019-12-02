@@ -21,53 +21,78 @@ department(art)
 % TODO Measure of class dificulty??
 % TODO Major/minor requirements
 
-% GENERIC CS CLASSES
-% MWF Classes
-class(generic_cs1, csci)
-meets(generic_cs1, mon, 9.0, 9.83)
-meets(generic_cs1, wed, 9.0, 9.83)
-meets(generic_cs1, fri, 9.0, 9.83)
+% --------------------------------------------------
+% ACTUAL CS CLASSES
+%
 
-class(generic_cs2, csci)
-meets(generic_cs2, mon, 10.0, 10.83)
-meets(generic_cs2, wed, 10.0, 10.83)
-meets(generic_cs3, fri, 10.0, 10.83)
+class(csci051A_01, "Intro to CS with Topics in AI", csci)
+meets(csci051A_01, mon, 11.00, 12.15)
+meets(csci051A_01, wed, 11.00, 12.15)
+meets(csci051A_01, wed, 7.00, 9.50)
 
-class(generic_cs3, csci)
-meets(generic_cs3, mon, 11.0, 11.83)
-meets(generic_cs3, wed, 11.0, 11.83)
-meets(generic_cs3, fri, 11.0, 11.83)
+class(csci051P_01, "Intro to CS in Python with Lab", csci)
+meets(csci051P_01, mon, 10.00, 10.50)
+meets(csci051P_01, wed, 10.00, 10.50)
+meets(csci051P_01, fri, 10.00, 10.50)
+meets(csci051P_01, thurs, 1.15, 4.00)
 
-% MW Classes
-class(generic_cs4, csci)
-meets(generic_cs4, mon, 13.0, 14.5)
-meets(generic_cs4, wed, 13.0, 14.5)
+class(csci054_01, "Discrete Math and Functional Programming", csci)
+meets(csci054_01, tues, 1.15, 2.30)
+meets(csci054_01, thurs, 1.15, 2.30)
 
-class(generic_cs5, csci)
-meets(generic_cs5, mon, 14.75, 16.0)
-meets(generic_cs5, wed, 14.75, 16.0)
+class(csci054_02, "Discrete Math and Functional Programming", csci)
+meets(csci054_02, tues, 2.45, 3.00)
+meets(csci054_02, thurs, 2.45, 3.00)
 
-% T,TH Classes
-class(generic_cs6, csci)
-meets(generic_cs6, tues, 8.0, 9.25)
-meets(generic_cs6, thurs, 8.0, 9.25)
+class(csci062_01, "Data Structures and Advanced Programming", csci)
+meets(csci062_01, tues, 1.15, 2.30)
+meets(csci062_01, thurs, 1.15, 2.30)
+meets(csci062_01, wed, 1.15, 4.00)
 
-class(generic_cs7, csci)
-meets(generic_cs7, tues, 9.583, 10.83)
-meets(generic_cs7, thurs, 9.583, 10.83)
+class(csci101_01, "Intro to Languages and Theory", csci)
+meets(csci101_01, tues, 1.15, 2.30)
+meets(csci101_01, thurs, 1.15, 2.30)
 
-class(generic_cs8, csci)
-meets(generic_cs8, tues, 11.0, 12.25)
-meets(generic_cs8, thurs, 11.0, 12.25)
+class(csci101_02, "Intro to Languages and Theory", csci)
+meets(csci101_02, tues, 2.45, 4.00)
+meets(csci101_02, thurs, 2.45, 4.00)
 
-class(generic_cs9, csci)
-meets(generic_cs9, tues, 13.0, 14.5)
-meets(generic_cs9, thurs, 13.0, 14.5)
+class(csci105_01, "Computer Systems", csci)
+meets(csci105_01, mon, 1.15, 2.30)
+meets(csci105_01, wed, 1.15, 2.30)
+meets(csci105_01, mon, 7.00, 8.15)
 
-class(generic_cs10, csci)
-meets(generic_cs10, tues, 14.75, 16.0)
-meets(generic_cs10, thurs, 14.75, 16.0)
+class(csci105_02, "Computer Systems", csci)
+meets(csci105_02, mon, 2.45, 4.00)
+meets(csci105_02, wed, 2.45, 4.00)
+meets(csci105_02, mon, 7.00, 8.15)
 
+class(csci133_01, "Database Systems", csci)
+meets(csci133_01, mon, 11.00, 12.15)
+meets(csci133_01, wed, 11.00, 12.15)
+
+class(csci140_01, "Algorithms", csci)
+meets(csci140_01, tues, 9.35, 10.50)
+meets(csci140_01, thurs, 9.35, 10.50)
+
+class(csci140_02, "Algorithms", csci)
+meets(csci140_02, tues, 11.00, 12.15)
+meets(csci140_02, thurs, 11.00, 12.15)
+
+class(csci181N_01, "Advanced Functional Programming", csci)
+meets(csci181N_01, tues, 9.35, 10.50)
+meets(csci181N_01, thurs, 9.35, 10.50)
+
+class(csci181U_01, "Building an Internet of Things", csci)
+meets(csci181U_01, tues, 9.35, 10.50)
+meets(csci181U_01, thurs, 9.35, 10.50)
+meets(csci181U_01, tues, 1.15, 4.00)
+
+
+
+% --------------------------------------------------
+% GENERIC CLASSES
+%
 
 % GENERIC MATH CLASSES
 % MWF Classes
@@ -117,6 +142,7 @@ meets(generic_math10, tues, 14.75, 16.0)
 meets(generic_math10, thurs, 14.75, 16.0)
 
 
+%-----------------------------------------------
 % GENERIC SCIENCE CLASSES
 % MWF Classes
 class(generic_science1, science)
@@ -165,6 +191,7 @@ meets(generic_science10, tues, 14.75, 16.0)
 meets(generic_science10, thurs, 14.75, 16.0)
 
 
+% --------------------------------------------------
 % GENERIC SOCIAL SCIENCE CLASSES
 % MWF Classes
 class(generic_soc_science1, soc_science)
@@ -213,6 +240,7 @@ meets(generic_soc_science10, tues, 14.75, 16.0)
 meets(generic_soc_science10, thurs, 14.75, 16.0)
 
 
+% --------------------------------------------------
 % GENERIC HUMANITIES CLASSES
 % MWF Classes
 class(generic_humanities1, humanities)
@@ -261,6 +289,7 @@ meets(generic_humanities10, tues, 14.75, 16.0)
 meets(generic_humanities10, thurs, 14.75, 16.0)
 
 
+% --------------------------------------------------
 % GENERIC ART CLASSES
 % MWF Classes
 class(generic_art1, art)
