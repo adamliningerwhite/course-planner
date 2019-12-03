@@ -5,7 +5,7 @@
 % satisfied (if possible).
 % We make sure not to include previously taken classes or violate class
 % prerequisites. Additionally, our program seeks to maximize the number
-% of major requirements fulfilled each semester. 
+% of major requirements fulfilled each semester.
 %
 
 
@@ -13,17 +13,16 @@
 #const class_num = 4.
 
 % Pick the student's classes
-class_num {pick(Class) : class(Class)} class_num.
-
+class_num {pick(Code, Name, Prof, Area) : class(Code, Name, Prof, Area)} class_num.
 
 
 %---------------------------------------
 % SCHEDULING CONSTRAINTS
 
 % C1: Don't allow class times to overlap
-:- pick(C1), pick(C2),
-  meets(C1, Day1, Start1, End1),
-  meets(C2, Day2, Start2, End2),
+:- pick(Code1, _name, _prof, _area), pick(Code2, _name, _prof, _area),
+  meets(Code1, _location, Day1, Start1, End1),
+  meets(Code2, _location, Day2, Start2, End2),
   Day1 = Day2,
   % Two classes do not overlap if one ends before the other starts or starts after the other ends
   not (End1 < Start2 ; Start1 > End2).
