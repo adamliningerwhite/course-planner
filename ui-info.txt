@@ -1,0 +1,38 @@
+Questions To Ask Student
+
+This is a good order to ask the questions as well. 
+
+1. What's your major?
+Write a prolog fact "major(answer)"
+
+2. How many core requirements do you want to satisfy?
+Write a prolog fact "core_num(answer)"
+
+3. How many elective requirements do you want to satisfy?
+Write a prolog fact "elective_num(answer)"
+
+4. What classes have you taken that could possibly be prerequisites for other courses?
+Answers should be given by course codes (e.g. csci051, math101, poli003, etc.)
+For each class listed, we will write a prolog fact of the form "taken(course_code)"
+
+5. What times are you busy or don't want to take class?
+Answers should be given as Day start-end (e.g. Monday 8:00 - 10:00 a.m.)
+For each time listed, we will write a prolog fact of the form "busy(day, start, end)"
+
+6. How many classes do you want to take?
+Answers will be integers
+We will write a prolog fact "course_num(answer)"
+
+7. (Optional) list departments in which you definitely want to take classes, and tell us how many should be in that department.
+Answers will look like "csci 2, poli 1"
+For each entry, we will write a prolog fact of the form "desired_num(dept, num)"
+
+8. (Optional) list departments in which you definitely don't want to take any classes
+Answers will look like "csci, art, econ, etc."
+For each dept, we will write a prolog fact of the form "forbidden_dept(dept)"
+
+9. What's the maximum number of hours you're willing to spending working per week?
+We'll write a prolog fact "max_workload"
+
+10. What's your lowest class rating cutoff?
+We'll write a prolog fact "min_rating"
