@@ -67,7 +67,6 @@ public class InputWindow {
         JTextField takenClassTextField = new JTextField(16);
         takenClassTextField.setBounds(50, 50, 100, 50);
         takenClassTextField.setBackground(Color.RED);
-        takenClassTextField.
         container.add(takenClassTextField);
 
         frame.getContentPane().add(scrollPane);
