@@ -456,7 +456,6 @@ class_meets(poli190C_01, "Carnegie 11", mon, 1.15, 4.00).
 
 
 % OTHER SUBJECT AREAS TO ADD
-% 1. Politics (Adam).
 % 2. Econ (Doug).
 % 3. Math (Adam)
 % 4. History (Doug)
