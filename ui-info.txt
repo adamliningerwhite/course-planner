@@ -21,7 +21,7 @@ For each time listed, we will write a prolog fact of the form "busy(day, start, 
 
 6. How many classes do you want to take?
 Answers will be integers
-We will write a prolog fact "course_num(answer)"
+We will write a prolog fact "#const class_num = answer"
 
 7. (Optional) list departments in which you definitely want to take classes, and tell us how many should be in that department.
 Answers will look like "csci 2, poli 1"
