@@ -23,7 +23,7 @@ class_num {picked_class(C) : class(C)} class_num.
     C1 = C2.
 
 % C2: Don't schedule two classes on the same day at the same time (no overlap)
-:- class(C1), picked_class(C2),
+:- picked_class(C1), picked_class(C2),
     class_meets(C1, Loc1, Day1, Start1, End1),
     class_meets(C2, Loc2, Day2, Start2, End2),
     Day1 = Day2, % Both classes meet on the same day
@@ -42,30 +42,46 @@ class_num {picked_class(C) : class(C)} class_num.
 % C5: Don't schedule classes that we've already taken
 :- picked_class(C), taken(C).
 
-% C6: Don't schedule classes that are not enough credits
-% WE NEED TO MAKE A SUMMATION TO COUNT # OF CREDITS
-:- picked_class(C),
-    class_credits(C, CR1)
-    min_credits(CR1).
+% C6: Make sure our chosen schedule has enough credits
+% Calculate the number of credits in our current schedule
+schedule_credits(Creds) :-
+  Creds = #sum {
+    Cr : picked_class(Cl), class_credits(Cl, Cr)
+  }.
+% Make sure we've picked enough credits
+:- schedule_credits(Cr1), min_credits(Cr2), Cr1 < Cr2.
+
 
 % C7: Don't schedule classes that exceed workload limit (weak constraint because workload field is not always present)
-% NEED TO MAKE A SUMMATION TO COMPUTE WORKLOAD
-:~ picked_class(C),
-    class_workload(C, W1),
-    max_workload(W2),
-    W2 > W1.
+% Calculate the hrs work/week for our current schedule
+schedule_workload(Hrs) :-
+  Hrs = #sum{
+    H : picked_class(Cl), class_workload(Cl, H)
+  }.
+% Make sure our schedule doesn't have too many hours of work
+:- schedule_workload(Hrs), max_workload(Max), Hrs > Max.
+
 
 % C8: Don't schedule classes below rating requirment (weak constraint because rating field is not always present)
 :~ picked_class(C),
     class_rating(C, R1),
-    % Or we could get min rating from user input
-    R1 < 3.0.
+    min_rating(R2),
+    R1 < R2.
 
-% C9:
+% C9: Not totally sure what this constraint does (ask Osborn or Doug)
 :~ picked_class(C),
     0 = {class_rating(C, R)}.
 
-
 % C10: Give the student their desired number of classes in each department
+% Calculate the number of classes assigned for each department
+dept_num(Dept, Num) :- Num = #sum{ 1 : picked_class(C), class_dept(C, Dept)}
+% Make sure that the assigned number per department matches the desired number
+:- dept_num(Dept1, Num1), desired_num(Dept2, Num2), Dept1 = Dept2, not (Num1 = Num2).
 
-% C11: Maximize the number of major requirements satisfied
+% C11: Don't pick any classes from forbidden departments
+:- picked_class(C), class_dept(C, D1), forbidden_dept(D2), D1 = D2.
+
+% C12: Make sure we're satisfying the desired number of core major requirements
+
+
+% C13: Make sure we're satisfying the desired number of elective major requirements
