@@ -74,7 +74,10 @@ schedule_workload(Hrs) :-
 
 % C10: Give the student their desired number of classes in each department
 % Calculate the number of classes assigned for each department
-dept_num(Dept, Num) :- Num = #sum{ 1 : picked_class(C), class_dept(C, Dept)}
+dept_num(Dept, Num) :-
+  Num = #sum{
+    1 : picked_class(C), class_dept(C, Dept)
+  }.
 % Make sure that the assigned number per department matches the desired number
 :- dept_num(Dept1, Num1), desired_num(Dept2, Num2), Dept1 = Dept2, not (Num1 = Num2).
 
@@ -82,6 +85,16 @@ dept_num(Dept, Num) :- Num = #sum{ 1 : picked_class(C), class_dept(C, Dept)}
 :- picked_class(C), class_dept(C, D1), forbidden_dept(D2), D1 = D2.
 
 % C12: Make sure we're satisfying the desired number of core major requirements
+core_assigned(Dept, Num) :-
+  Num = #sum {
+    1 : picked_class(C), class_dept(C, Dept), class_type(C, core)
+  }.
+:- major(Dept), core_assigned(Dept, Num1), core_num(Dept, Num2), not (Num1 = Num2).
 
 
 % C13: Make sure we're satisfying the desired number of elective major requirements
+electives_assigned(Dept, Num) :-
+  Num = #sum {
+    1 : picked_class(C), class_dept(C, Dept), class_type(C, elective)
+  }.
+:- major(Dept), electives_assigned(Dept, Num1), elective_num(Dept, Num2), not (Num1 = Num2).
