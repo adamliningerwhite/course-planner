@@ -132,6 +132,7 @@ public class InputWindow {
 		frame.setVisible(true);
 		frame.setSize(FRAMEWIDTH, FRAMEHEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+<<<<<<< HEAD
 			
 		topContainer = new JPanel();
 		topContainer.setBackground(MAINCOLOR);
@@ -142,6 +143,26 @@ public class InputWindow {
 		
 		scrollPane = new JScrollPane(mainContainer, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		//scrollPane.getViewport().setPreferredSize(new Dimension(FRAMEWIDTH, FRAMEHEIGHT));
+=======
+				
+		JPanel container = new JPanel();
+        JScrollPane scrollPane = new JScrollPane(container, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        //container.setPreferredSize(new Dimension(100, 250));
+        container.setSize(new Dimension(FRAMEWIDTH, 250));
+        container.setLayout(null);
+        container.setBackground(Color.WHITE);
+
+        JLabel takenClassLabel = new JLabel("Enter prviously taken courses here");
+        takenClassLabel.setBounds(50, 11, 101, 14);
+        container.add(takenClassLabel);
+        
+        JTextField takenClassTextField = new JTextField(16);
+        takenClassTextField.setBounds(50, 50, 100, 50);
+        takenClassTextField.setBackground(Color.RED);
+        container.add(takenClassTextField);
+
+        frame.getContentPane().add(scrollPane);
+>>>>>>> e912d8bfe1c6f0479517db3bd2498a1dddc6add4
 		
 		majorContainer = new JPanel();
 		BoxLayout layout = new BoxLayout(majorContainer, BoxLayout.Y_AXIS);
