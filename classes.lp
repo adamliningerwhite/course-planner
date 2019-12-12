@@ -1,6 +1,28 @@
 % This file contains a list of generic classes and their info
 % We will use this to test basic functionalities of our program
 
+% A list of class departments
+dept(csci).
+dept(math).
+dept(poli).
+dept(econ).
+dept(hist).
+dept(art).
+dept(bio).
+dept(chem).
+dept(engl).
+dept(phil).
+dept(psyc).
+
+% OTHER SUBJECT AREAS TO ADD
+% 2. Econ (Doug)
+% 4. History (Doug)
+% 6. Biology (Doug)
+% 7. Chemistry (Adam)
+% 8. English (Doug)
+% 9. Philosophy (Adam)
+% 10. Psychology (Doug)
+
 % -----------------------------------------------
 
 % Things that each class needs to have:
@@ -807,12 +829,129 @@ class_workload(math191_04, 45).
 class_meets(math191_04, "Milikan 1021", fri, 1315, 1430).
 
 
-% OTHER SUBJECT AREAS TO ADD
-% 2. Econ (Doug)
-% 4. History (Doug)
-% 5. Art (Adam)
-% 6. Biology (Doug)
-% 7. Chemistry (Adam)
-% 8. English (Doug)
-% 9. Philosophy (Adam)
-% 10. Psychology (Doug)
+% --------------------------------------------------
+% ACTUAL ART CLASSES (ADAM)
+%
+
+class(art010_01).
+class_name(art010_01, "Painting 1").
+class_prof(art010_01, "Staff").
+class_dept(art010_01, art).
+class_rating(art010_01, 40).
+class_credits(art010_01, 10).
+class_type(art010_01, core).
+class_workload(art010_01, 61).
+% No course prerequisite
+class_meets(art010_01, "Studio Arts, 201", mon, 935, 1205).
+class_meets(art010_01, "Studio Arts, 201", wed, 935, 1205).
+
+
+class(art021_01).
+class_name(art021_01, "Foundations of 2D Design").
+class_prof(art021_01, "Mark Allen").
+class_dept(art021_01, art).
+class_rating(art021_01, 45).
+class_credits(art021_01, 10).
+class_type(art021_01, core).
+class_workload(art021_01, 47).
+% No course prerequisite
+class_meets(art021_01, "Studio Arts, 215", tues, 1315, 1545).
+class_meets(art021_01, "Studio Arts, 215", thurs, 1315, 1545).
+
+
+class(art022_01).
+class_name(art022_01, "Video Art").
+class_prof(art022_01, "Kimberly Ye").
+class_dept(art022_01, art).
+% No class rating
+class_credits(art022_01, 10).
+class_type(art022_01, core).
+% No class workload
+% No course prerequisite
+class_meets(art022_01, "Studio Arts, 118", mon, 1315, 1545).
+class_meets(art022_01, "Studio Arts, 118", wed, 1315, 1545).
+
+
+class(art022_02).
+class_name(art022_02, "Video Art").
+class_prof(art022_02, "Kimberly Ye").
+class_dept(art022_02, art).
+% No class rating
+class_credits(art022_02, 10).
+class_type(art022_02, core).
+% No class workload
+% No course prerequisite
+class_meets(art022_02, "Studio Arts, 118", mon, 1615, 1845).
+class_meets(art022_02, "Studio Arts, 118", wed, 1615, 1845).
+
+
+class(art111_01).
+class_name(art111_01, "Topics in Contemporary Painting").
+class_prof(art111_01, "Staff").
+class_dept(art111_01, art).
+class_rating(art111_01, 45)
+class_credits(art111_01, 10).
+class_type(art111_01, core).
+class_workload(art111_01, 55).
+prerequisite(art111_01, art010).
+class_meets(art111_01, "Studio Arts, 201", mon, 1315, 1545).
+class_meets(art111_01, "Studio Arts, 201", wed, 1315, 1545).
+
+
+class(art114_01).
+class_name(art114_01, "Printmaking Studio").
+class_prof(art114_01, "Mark Allen").
+class_dept(art114_01, art).
+% No class rating
+class_credits(art114_01, 10).
+class_type(art114_01, core).
+% No class workload
+prerequisite(art114_01, art010).
+class_meets(art114_01, "Studio Arts, 215", tues, 935, 1205).
+class_meets(art114_01, "Studio Arts, 215", thurs, 935, 1205).
+
+
+
+class(art126B_01).
+class_name(art126B_01, "Sculpture II-Casting: One & Many").
+class_prof(art126B_01, "Michael O'Malley").
+class_dept(art126B_01, art).
+% No class rating
+class_credits(art126B_01, 10).
+class_type(art126B_01, core).
+% No class workload
+% No class prerequisite
+class_meets(art126B_01, "Studio Arts, 106", mon, 1315, 1545).
+class_meets(art126B_01, "Studio Arts, 106", wed, 1315, 1545).
+
+
+class(art131_01).
+class_name(art131_01, "Sculptural Funct & Concep Design").
+class_prof(art131_01, "Michael O'Malley").
+class_dept(art131_01, art).
+class_rating(art131_01, 50)
+class_credits(art131_01, 10).
+class_type(art131_01, core).
+class_workload(art131_01, 150).
+prerequisite(art131_01, art025).
+class_meets(art131_01, "Studio Arts, 118", mon, 830, 1100).
+class_meets(art131_01, "Studio Arts, 118", wed, 830, 1100).
+
+
+class(art139_01).
+class_name(art139_01, "Sketchbook Pursuits").
+class_prof(art139_01, "Mercedes Teixido").
+class_dept(art139_01, art).
+% No class rating
+class_credits(art139_01, 10).
+class_type(art139_01, core).
+% No class workload
+prerequisite(art139_01, art005).
+class_meets(art139_01, "Studio Arts, 216", tues, 1315, 1545).
+class_meets(art139_01, "Studio Arts, 216", thurs, 1315, 1545).
+
+
+
+% --------------------------------------------------
+% ACTUAL CHEMISTRY CLASSES (ADAM)
+%
