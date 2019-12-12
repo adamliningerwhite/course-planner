@@ -11,19 +11,6 @@
 % The maximum number of classes to add to the schedule set
 #const class_num = 4.
 
-% A list of class departments
-dept(csci).
-dept(math).
-dept(poli).
-dept(econ).
-dept(hist).
-dept(art).
-dept(bio).
-dept(chem).
-dept(engl).
-dept(phil).
-dept(psyc).
-
 % Make a schedule set with class_num number of classes
  class_num {picked_class(C) : class(C)} class_num.
 
@@ -128,21 +115,31 @@ dept_num(Dept, Num) :-
 % --------------------------------------------------------------------------
 
 % C11: Make sure we're satisfying the desired number of core major requirements
-% core_assigned(Dept, Num) :-
-%   Num = #sum {
-%     1, C : picked_class(C), class_dept(C, Dept), class_type(C, core)
-%   }.
-% :- major(Dept), core_assigned(Dept, Num1), core_num(Dept, Num2), Num1 != Num2.
+core_assigned(Dept, Num) :-
+  dept(Dept),
+  Num = #sum {
+    1, C : picked_class(C), class_dept(C, Dept), class_type(C, core)
+  }.
+:- major(Dept), core_assigned(Dept, Num1), core_num(Dept, Num2), Num1 != Num2.
 
 % --------------------------------------------------------------------------
 
 % C12: Make sure we're satisfying the desired number of elective major requirements
-% electives_assigned(Dept, Num) :-
-%   Num = #sum {
-%     1, C : picked_class(C), class_dept(C, Dept), class_type(C, elective)
-%   }.
-% :- major(Dept), electives_assigned(Dept, Num1), elective_num(Dept, Num2), Num1 != Num2.
+electives_assigned(Dept, Num) :-
+  dept(Dept),
+  Num = #sum {
+    1, C : picked_class(C), class_dept(C, Dept), class_type(C, elective)
+  }.
+:- major(Dept), electives_assigned(Dept, Num1), elective_num(Dept, Num2), Num1 != Num2.
 
 % --------------------------------------------------------------------------
 
 % C13: Max number of classes per day
+% TODO
+
+% --------------------------------------------------------------------------
+% C14: Optimize schedules to maximize total rating across all assigned classes
+rating_sum(Num) :-
+  Num = #sum {
+    R : picked_class(C), class_rating(C, R)
+}.
