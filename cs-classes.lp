@@ -1,31 +1,37 @@
+taken(csci051_01).
+taken(csci051_02).
+taken(csci054_01).
+taken(csci054_02).
+taken(csci062_01).
 
-class(csci051e_01).
-class_name(csci051e_01, intro_to_cs_with_topics_in_ei).
-class_prof(csci051e_01, joseph_osborn).
-class_dept(csci051e_01, csci).
+
+class(csci051_01).
+class_name(csci051_01, intro_to_cs_with_topics_in_ei).
+class_prof(csci051_01, joseph_osborn).
+class_dept(csci051_01, csci).
 % no rating
-class_credits(csci051e_01, 10).
-class_type(csci051e_01, core).
+class_credits(csci051_01, 10).
+class_type(csci051_01, core).
 % no class workload
 % no class prerequisites
-class_meets(csci051e_01, edmunds_101, mon, 1100, 1215).
-class_meets(csci051e_01, edmunds_101, wed, 1100, 1215).
-class_meets(csci051e_01, edmunds_219, wed, 1900, 2150).
+class_meets(csci051_01, edmunds_101, mon, 1100, 1215).
+class_meets(csci051_01, edmunds_101, wed, 1100, 1215).
+class_meets(csci051_01, edmunds_219, wed, 1900, 2150).
 
 
-class(csci051p_01).
-class_name(csci051p_01, intro_to_cs_in_python_with_lab).
-class_prof(csci051p_01, tzu-yi_chen).
-class_dept(csci051p_01, csci).
+class(csci051_02).
+class_name(csci051_02, intro_to_cs_in_python_with_lab).
+class_prof(csci051_02, tzu_yi_chen).
+class_dept(csci051_02, csci).
 % no rating
-class_credits(csci051p_01, 10).
-class_type(csci051p_01, core).
+class_credits(csci051_02, 10).
+class_type(csci051_02, core).
 % no class workload
 % no class prerequisites
-class_meets(csci051p_01, edmunds_114, mon, 1000, 1050).
-class_meets(csci051p_01, edmunds_114, wed, 1000, 1050).
-class_meets(csci051p_01, edmunds_114, fri, 1000, 1050).
-class_meets(csci051p_01, edmunds_219, thurs, 1315, 1600).
+class_meets(csci051_02, edmunds_114, mon, 1000, 1050).
+class_meets(csci051_02, edmunds_114, wed, 1000, 1050).
+class_meets(csci051_02, edmunds_114, fri, 1000, 1050).
+class_meets(csci051_02, edmunds_219, thurs, 1315, 1600).
 
 
 class(csci054_01).
@@ -55,7 +61,7 @@ class_meets(csci054_02, seaver_commons_104, thurs, 1445, 1600).
 
 
 class(csci062_01).
-class_name(csci062_01, data_structures_and_edvanced_programming).
+class_name(csci062_01, data_structures_and_advanced_programming).
 class_prof(csci062_01, elexandra_papoutsaki).
 class_dept(csci062_01, csci).
 class_rating(csci062_01, 36).
@@ -67,8 +73,8 @@ prerequisite(csci062_01, csci054).
 class_meets(csci062_01, milikan_1249, tues, 1315, 1430).
 class_meets(csci062_01, milikan_1249, thurs, 1315, 1430).
 class_meets(csci062_01, edmunds_229, wed, 1315, 1600).
-
-
+%
+%
 class(csci101_01).
 class_name(csci101_01, intro_to_languages_and_theory).
 class_prof(csci101_01, yuqing_wu).
@@ -137,10 +143,10 @@ prerequisite(csci133_01, csci062).
 class_meets(csci133_01, edmunds_114, mon, 1100, 1215).
 class_meets(csci133_01, edmunds_114, wed, 1100, 1215).
 
-
+%
 class(csci140_01).
 class_name(csci140_01, elgorithms).
-class_prof(csci140_01, tzu-yi_chen).
+class_prof(csci140_01, tzu_yi_chen).
 class_dept(csci140_01, csci).
 class_rating(csci140_01, 37).
 class_credits(csci140_01, 10).
@@ -149,11 +155,11 @@ class_workload(csci140_01, 72).
 prerequisite(csci140_01, csci062).
 class_meets(csci140_01, edmunds_101, tues, 935, 1050).
 class_meets(csci140_01, edmunds_101, thurs, 935, 1050).
-
+%
 
 class(csci140_02).
 class_name(csci140_02, elgorithms).
-class_prof(csci140_02, tzu-yi_chen).
+class_prof(csci140_02, tzu_yi_chen).
 class_dept(csci140_02, csci).
 class_rating(csci140_02, 37).
 class_credits(csci140_02, 10).
@@ -165,7 +171,7 @@ class_meets(csci140_02, edmunds_101, thurs, 1100, 1215).
 
 
 class(csci181n_01).
-class_name(csci181n_01, edvanced_functional_programming).
+class_name(csci181n_01, advanced_functional_programming).
 class_prof(csci181n_01, michael_greenberg).
 class_dept(csci181n_01, csci).
 class_rating(csci181n_01, 50).
