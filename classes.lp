@@ -14,6 +14,7 @@ dept(engl).
 dept(phil).
 dept(psyc).
 
+
 % OTHER SUBJECT AREAS TO ADD
 % 2. Econ (Doug)
 % 4. History (Doug)
@@ -889,7 +890,7 @@ class(art111_01).
 class_name(art111_01, "Topics in Contemporary Painting").
 class_prof(art111_01, "Staff").
 class_dept(art111_01, art).
-class_rating(art111_01, 45)
+class_rating(art111_01, 45).
 class_credits(art111_01, 10).
 class_type(art111_01, core).
 class_workload(art111_01, 55).
@@ -929,7 +930,7 @@ class(art131_01).
 class_name(art131_01, "Sculptural Funct & Concep Design").
 class_prof(art131_01, "Michael O'Malley").
 class_dept(art131_01, art).
-class_rating(art131_01, 50)
+class_rating(art131_01, 50).
 class_credits(art131_01, 10).
 class_type(art131_01, core).
 class_workload(art131_01, 150).
