@@ -4,8 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,22 +22,35 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+
 public class InputWindow {
 
 	private final int FRAMEXPOS = 100;
 	private final int FRAMEYPOS = 100;
 	
-	private final int FRAMEWIDTH = 600;
+	private final int FRAMEWIDTH = 800;
 	private final int FRAMEHEIGHT = 750;
 	
-	private final int PANELWIDTH = 500;
-	private final int PANELHEIGHT = 100;
+	private final int PANELWIDTH = 650;
+	private final int PANELHEIGHT = 50;
 	
-	private final int PADDING = 25;
+	private final int XPADDING = 50;
+	private final int YPADDING = 25;
 	
 	private JFrame frame;
+	private JPanel mainContainer;
 	
-	private JScrollPane scrollPane;
+	private ChoiceInputContainer majorContainer;
+	private ChoiceInputContainer coreClassesContainer;
+	private ChoiceInputContainer electiveClassesContainer;
+	private TextInputContainer previousClassesContainer;
+	private TextInputContainer busyContainer;
+	private ChoiceInputContainer numClassesContainer;
+	private ChoiceInputContainer numClassesPerDayContainer;
+	private TextInputContainer departmentContainer;
+	private TextInputContainer notDepartmentContainer;
+	private ChoiceInputContainer workloadContainer;
+	private ChoiceInputContainer ratingContainer;
 	
 	private JPanel topContainer;
 	private JLabel uiTitle;
@@ -40,51 +58,17 @@ public class InputWindow {
 	private JPanel bottomContainer;
 	private JButton submitButton;
 	
-	private JPanel mainContainer;
-	private JPanel majorContainer;
-	private JPanel coreClassesContainer;
-	private JPanel electiveClassesContainer;
-	private JPanel previousCoursesContainer;
-	private JPanel busyContainer;
-	private JPanel numClassesContainer;
-	private JPanel workloadContainer;
-	private JPanel ratingContainer;
-	
-	private JLabel majorLabel;
-	private JLabel coreClassesLabel;
-	private JLabel electiveClassesLabel;
-	private JLabel previousCoursesLabel;
-	private JLabel busyLabel;
-	private JLabel numClassesLabel;
-	private JLabel workloadLabel;
-	private JLabel ratingLabel;
-	
-	private Choice majorChoices;
-	private Choice numCoreClassesChoices;
-	private Choice numElectiveClassesChoices;
-	private JTextField previousCoursesTextField;
-	private JTextField busyTextField;
-	private Choice numClassesChoice;
-	private Choice maxWorkloadChoice;
-	private Choice minRatingChoice;
-	
-	
-	//private Choice genericChoice = new Choice("0")
-	
-	//private BoxLayout layout = new BoxLayout(new JPanel(), BoxLayout.Y_AXIS);
-	
 	private final Font TITLEFONT = new Font("Courier", Font.BOLD, 24);
 	private final Font MAINFONT = new Font("Courier", Font.BOLD, 14);
 	
-	private String[] majorList = {"Computer Science", "Math", "Economics", "Politics"};
-	private String[] numCourseList = {"1", "2", "3", "4", "5", "6"};
+	private String[] majorList = {"csci", "math", "econ", "poli"};
+	private String[] numCourseList = {"0", "1", "2", "3", "4", "5", "6"};
 	private String[] workloadList = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
 										"11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
 										"21", "22", "23", "24", "25"};
 	private String[] ratingList = {"1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5"};
 	
 	private final Color MAINCOLOR = new Color(255, 255, 255);
-	private final Color BOXCOLOR = new Color(51, 153, 255);
 	
 
 	/**
@@ -103,24 +87,54 @@ public class InputWindow {
 		return choice;
 	}
 	
-	public void compileInput() {
-		System.out.println("major(" + majorChoices.getItem(majorChoices.getSelectedIndex()) + ")");
-		System.out.println("num_core(" + numCoreClassesChoices.getItem(numCoreClassesChoices.getSelectedIndex()) + ")");
-		System.out.println("num_elective(" + numElectiveClassesChoices.getItem(numElectiveClassesChoices.getSelectedIndex()) + ")");
+	public void compileInput() throws IOException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\dougi\\Desktop\\College\\Second Year\\Sem 2\\CS 62\\CS62Workspace\\AI-FinalProject\\src\\Input.txt"));		
 		
-		String[] previousCourses = previousCoursesTextField.getText().split(",");
-		for(int i = 0; i < previousCourses.length; i++) {
-			System.out.println("taken(" + previousCourses[i].trim() + ")");
+		writer.write("major(" + majorContainer.getChoice().getItem(majorContainer.getChoice().getSelectedIndex()) + ").\n");
+		writer.write("core_num(" + coreClassesContainer.getChoice().getItem(coreClassesContainer.getChoice().getSelectedIndex()) + ").\n");
+		writer.write("elective_num(" + electiveClassesContainer.getChoice().getItem(electiveClassesContainer.getChoice().getSelectedIndex()) + ").\n");
+		
+		if(!previousClassesContainer.getTextArea().getText().equals("")) {
+			String[] previousCourses = previousClassesContainer.getTextArea().getText().split(",");
+			for(int i = 0; i < previousCourses.length; i++) {
+				writer.write("taken(" + previousCourses[i].trim() + ").\n");
+				for(int sectionNum = 1; sectionNum < 5; sectionNum++) {
+					writer.write("taken(" + previousCourses[i].trim() + "_0" + sectionNum + ").\n");
+				}
+			}
 		}
 		
-		String[] busyTimes = busyTextField.getText().split(",");
-		for(int i = 0; i < busyTimes.length; i++) {
-			System.out.println("taken(" + busyTimes[i].trim() + ")");
+		if(!busyContainer.getTextArea().getText().equals("")) {
+			System.out.println("x" + busyContainer.getTextArea().getText() + "x");
+			String[] busyTimes = busyContainer.getTextArea().getText().split(",");
+			for(int i = 0; i < busyTimes.length; i++) {
+				String[] busyTime = busyTimes[i].split("-");
+				writer.write("busy(" + busyTime[0].trim() + ", " + busyTime[1].trim() + ", " + busyTime[2].trim() + ").\n");
+			}
 		}
 		
-		System.out.println("num_classes(" + numClassesChoice.getItem(numClassesChoice.getSelectedIndex()) + ")");
-		System.out.println("workload(" + maxWorkloadChoice.getItem(maxWorkloadChoice.getSelectedIndex()) + ")");
-		System.out.println("rating(" + minRatingChoice.getItem(minRatingChoice.getSelectedIndex()) + ")");
+		writer.write("num_classes(" + numClassesContainer.getChoice().getItem(numClassesContainer.getChoice().getSelectedIndex()) + ").\n");
+		writer.write("day_max(" + numClassesPerDayContainer.getChoice().getItem(numClassesPerDayContainer.getChoice().getSelectedIndex()) + ").\n");
+		
+		if(!departmentContainer.getTextArea().getText().equals("")) {
+			String[] departments = departmentContainer.getTextArea().getText().split(",");
+			for(int i = 0; i < departments.length; i++) {
+				String[] department = departments[i].split("-");
+				writer.write("desired_num(" + department[0].trim() + ", " + department[1].trim() + ").\n");
+			}
+		}
+		
+		if(!notDepartmentContainer.getTextArea().getText().equals("")) {
+			String[] notDepartments = notDepartmentContainer.getTextArea().getText().split(",");
+			for(int i = 0; i < notDepartments.length; i++) {
+				writer.write("forbidden_dept(" + notDepartments[i].trim() + ").\n");
+			}
+		}
+		
+		writer.write("max_workload(" + workloadContainer.getChoice().getItem(workloadContainer.getChoice().getSelectedIndex()) + ").\n");
+		writer.write("min_rating(" + ratingContainer.getChoice().getItem(ratingContainer.getChoice().getSelectedIndex()) + ").\n");
+		
+		writer.close();
 	}
 	
 	/**
@@ -132,167 +146,86 @@ public class InputWindow {
 		frame.setVisible(true);
 		frame.setSize(FRAMEWIDTH, FRAMEHEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
+
 		topContainer = new JPanel();
 		topContainer.setBackground(MAINCOLOR);
-		
-		mainContainer = new JPanel();
-		//mainContainer.setSize(FRAMEWIDTH, FRAMEHEIGHT);
-		mainContainer.setBackground(Color.WHITE);
-		
-		scrollPane = new JScrollPane(mainContainer, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		//scrollPane.getViewport().setPreferredSize(new Dimension(FRAMEWIDTH, FRAMEHEIGHT));
-		
-		majorContainer = new JPanel();
-		BoxLayout layout = new BoxLayout(majorContainer, BoxLayout.Y_AXIS);
-		majorContainer.setLayout(layout);
-		majorContainer.setBounds(frame.getX() + PADDING, topContainer.getY() + (2 * PADDING), PANELWIDTH, PANELHEIGHT);
-		majorContainer.setBackground(BOXCOLOR);
-		
-		majorLabel = new JLabel("Enter your major");
-		
-		
-		coreClassesContainer = new JPanel();
-		BoxLayout layout2 = new BoxLayout(coreClassesContainer, BoxLayout.Y_AXIS);
-		coreClassesContainer.setLayout(layout2);
-		coreClassesContainer.setBounds(frame.getX() + PADDING, majorContainer.getY() + majorContainer.getHeight() + PADDING, PANELWIDTH, PANELHEIGHT);
-		coreClassesContainer.setBackground(BOXCOLOR);
-		
-		electiveClassesContainer = new JPanel();
-		BoxLayout layout3 = new BoxLayout(electiveClassesContainer, BoxLayout.Y_AXIS);
-		electiveClassesContainer.setLayout(layout3);
-		electiveClassesContainer.setBounds(frame.getX() + PADDING, coreClassesContainer.getY() + coreClassesContainer.getHeight() + PADDING, PANELWIDTH, PANELHEIGHT);
-		electiveClassesContainer.setBackground(BOXCOLOR);
-		
-		previousCoursesContainer = new JPanel();
-		BoxLayout layout4 = new BoxLayout(previousCoursesContainer, BoxLayout.Y_AXIS);
-		previousCoursesContainer.setLayout(layout4);
-		previousCoursesContainer.setBounds(frame.getX() + PADDING, electiveClassesContainer.getY() + electiveClassesContainer.getHeight() + PADDING, PANELWIDTH, PANELHEIGHT);
-		previousCoursesContainer.setBackground(BOXCOLOR);
-			
-		busyContainer = new JPanel();
-		BoxLayout layout5 = new BoxLayout(busyContainer, BoxLayout.Y_AXIS);
-		busyContainer.setLayout(layout5);
-		busyContainer.setBounds(frame.getX() + PADDING, previousCoursesContainer.getY() + previousCoursesContainer.getHeight() + PADDING, PANELWIDTH, PANELHEIGHT);
-		busyContainer.setBackground(BOXCOLOR);
-		
-		numClassesContainer = new JPanel();
-		BoxLayout layout6 = new BoxLayout(numClassesContainer, BoxLayout.Y_AXIS);
-		numClassesContainer.setLayout(layout6);
-		numClassesContainer.setBounds(frame.getX() + PADDING, busyContainer.getY() + busyContainer.getHeight() + PADDING, PANELWIDTH, PANELHEIGHT);
-		numClassesContainer.setBackground(BOXCOLOR);
-		
-		workloadContainer = new JPanel();
-		BoxLayout layout7 = new BoxLayout(workloadContainer, BoxLayout.Y_AXIS);
-		workloadContainer.setLayout(layout7);
-		workloadContainer.setBounds(frame.getX() + PADDING, numClassesContainer.getY() + numClassesContainer.getHeight() + PADDING, PANELWIDTH, PANELHEIGHT);
-		workloadContainer.setBackground(BOXCOLOR);
-		
-		ratingContainer = new JPanel();
-		BoxLayout layout8 = new BoxLayout(ratingContainer, BoxLayout.Y_AXIS);
-		ratingContainer.setLayout(layout8);
-		ratingContainer.setBounds(frame.getX() + PADDING, workloadContainer.getY() + workloadContainer.getHeight() + PADDING, PANELWIDTH, PANELHEIGHT);
-		ratingContainer.setBackground(BOXCOLOR);
-		
-		bottomContainer = new JPanel();
-		bottomContainer.setBackground(MAINCOLOR);		
-	
-		
 		uiTitle = new JLabel("Pomona College Course Planner");
 		uiTitle.setFont(TITLEFONT);
+		topContainer.add(uiTitle);
 		
-		majorLabel = new JLabel("What is your major");
-		majorLabel.setFont(MAINFONT);
-		majorContainer.add(majorLabel);
+		mainContainer = new JPanel();
+		mainContainer.setBackground(Color.WHITE);
+		mainContainer.setLayout(new GridLayout(1,2));
 		
-		majorChoices = new Choice();
-		initializeChoices(majorChoices, majorList);
-		majorContainer.add(majorChoices);
+		int XPos = frame.getX() + XPADDING;
 		
-		coreClassesLabel = new JLabel("How many core courses do you want to take?");
-		coreClassesLabel.setFont(MAINFONT);
-		coreClassesContainer.add(coreClassesLabel);
+		Rectangle majorBounds = new Rectangle(XPos, topContainer.getY() + (2 * YPADDING), PANELWIDTH, PANELHEIGHT);
+		majorContainer = new ChoiceInputContainer("What is your major?", majorList,  majorBounds);
 		
-		numCoreClassesChoices = new Choice();
-		initializeChoices(numCoreClassesChoices, numCourseList);
-		coreClassesContainer.add(numCoreClassesChoices);
+		Rectangle coreClassesBounds = new Rectangle(XPos, ((int) majorBounds.getY()) + ((int) majorBounds.getHeight()) + YPADDING, PANELWIDTH, PANELHEIGHT);
+		coreClassesContainer = new ChoiceInputContainer("How many core requirements do you want to satisfy?", numCourseList, coreClassesBounds);
 		
-		electiveClassesLabel = new JLabel("How many elective courses do you want to take?");
-		electiveClassesLabel.setFont(MAINFONT);
-		electiveClassesContainer.add(electiveClassesLabel);
+		Rectangle electiveClassesBounds = new Rectangle(XPos, (int) coreClassesBounds.getY() + (int) coreClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		electiveClassesContainer = new ChoiceInputContainer("How many elective requirements do you want to satisfy?", numCourseList, electiveClassesBounds);
 		
-		numElectiveClassesChoices = new Choice();
-		initializeChoices(numElectiveClassesChoices, numCourseList);
-		electiveClassesContainer.add(numElectiveClassesChoices);
+		Rectangle previousClassesBounds = new Rectangle(XPos, (int) electiveClassesBounds.getY() + (int) electiveClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		previousClassesContainer = new TextInputContainer("What classes have you taken?", previousClassesBounds);
 		
-		previousCoursesLabel = new JLabel("What courses have you completed?");
-		previousCoursesLabel.setFont(MAINFONT);
-		previousCoursesContainer.add(previousCoursesLabel);
+		Rectangle busyBounds = new Rectangle(XPos, (int) previousClassesBounds.getY() + (int) previousClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		busyContainer = new TextInputContainer("What times are you busy or don't want to take class?", busyBounds);
 		
-		previousCoursesTextField = new JTextField();
-		previousCoursesContainer.add(previousCoursesTextField);
+		Rectangle numClassesBounds = new Rectangle(XPos, (int) busyBounds.getY() + (int) busyBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		numClassesContainer = new ChoiceInputContainer("How many classes do you want to take?", numCourseList, numClassesBounds);
 		
-		busyLabel = new JLabel("When are you busy");
-		busyLabel.setFont(MAINFONT);
-		busyContainer.add(busyLabel);
+		Rectangle numClassesPerDayBounds = new Rectangle(XPos, (int) numClassesBounds.getY() + (int) numClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		numClassesPerDayContainer = new ChoiceInputContainer("What is the maximum number of classes you want in a day", numCourseList, numClassesPerDayBounds);
 		
-		busyTextField = new JTextField();
-		busyContainer.add(busyTextField);
+		Rectangle departmentBounds = new Rectangle(XPos, (int) numClassesPerDayBounds.getY() + (int) numClassesPerDayBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		departmentContainer = new TextInputContainer("What departments do you want to take classes in and associated number in that department?", departmentBounds);
 		
-		numClassesLabel = new JLabel("How many courses do you want to enroll in?");
-		numClassesLabel.setFont(MAINFONT);
-		numClassesContainer.add(numClassesLabel);
+		Rectangle notDepartmentBounds = new Rectangle(XPos, (int) departmentBounds.getY() + (int) departmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		notDepartmentContainer = new TextInputContainer("What departments do you not want to take classes in?", notDepartmentBounds);
 		
-		numClassesChoice = new Choice();
-		initializeChoices(numClassesChoice, numCourseList);
-		numClassesContainer.add(numClassesChoice);
+		Rectangle workloadBounds = new Rectangle(XPos, (int) notDepartmentBounds.getY() + (int) notDepartmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		workloadContainer = new ChoiceInputContainer("What is you maximum workload?", workloadList, workloadBounds);
 		
-		workloadLabel = new JLabel("What is your maximum workload?");
-		workloadLabel.setFont(MAINFONT);
-		workloadContainer.add(workloadLabel);
+		Rectangle ratingBounds = new Rectangle(XPos, (int) workloadBounds.getY() + (int) workloadBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		ratingContainer = new ChoiceInputContainer("What is you minimum class rating?", ratingList, ratingBounds);
 		
-		maxWorkloadChoice = new Choice();
-		initializeChoices(maxWorkloadChoice, workloadList);
-		workloadContainer.add(maxWorkloadChoice);
-		
-		ratingLabel = new JLabel("What is your mimimum class rating?");
-		ratingLabel.setFont(MAINFONT);
-		ratingContainer.add(ratingLabel);
-		
-		minRatingChoice = new Choice();
-		initializeChoices(minRatingChoice, ratingList);
-		ratingContainer.add(minRatingChoice);
-		
+		bottomContainer = new JPanel();
+		bottomContainer.setBackground(MAINCOLOR);
 		submitButton = new JButton("Submit");
 		submitButton.setFont(MAINFONT);
+		bottomContainer.add(submitButton);
+		
+		frame.add(topContainer, BorderLayout.NORTH);
+		frame.add(bottomContainer, BorderLayout.SOUTH);
+
+		frame.add(mainContainer);
+		frame.add(majorContainer.getContainer());
+		frame.add(coreClassesContainer.getContainer());
+		frame.add(electiveClassesContainer.getContainer());
+		frame.add(previousClassesContainer.getContainer());
+		frame.add(busyContainer.getContainer());
+		frame.add(numClassesContainer.getContainer());
+		frame.add(numClassesPerDayContainer.getContainer());
+		frame.add(departmentContainer.getContainer());
+		frame.add(notDepartmentContainer.getContainer());
+		frame.add(workloadContainer.getContainer());
+		frame.add(ratingContainer.getContainer());		
+		frame.add(new JPanel());
 		
 		submitButton.addActionListener(new ActionListener()
 	    {
 	      public void actionPerformed(ActionEvent e)
 	      {
-	        compileInput();
+	        try {
+				compileInput();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 	      }
 	    });
-		
-		topContainer.add(uiTitle);
-		bottomContainer.add(submitButton);
-		
-		frame.add(topContainer, BorderLayout.NORTH);
-		frame.add(bottomContainer, BorderLayout.SOUTH);
-		frame.add(mainContainer);
-		frame.add(majorContainer);
-		frame.add(coreClassesContainer);
-		frame.add(electiveClassesContainer);
-		frame.add(previousCoursesContainer);
-		frame.add(busyContainer);
-		frame.add(numClassesContainer);
-		frame.add(workloadContainer);
-		frame.add(ratingContainer);
-		
-		frame.getContentPane().add(scrollPane);
-		//frame.add(scrollPane);
-		
-		
 	}
 	
 	
