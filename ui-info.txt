@@ -36,3 +36,6 @@ We'll write a prolog fact "max_workload(answer)"
 
 10. What's your lowest class rating cutoff?
 We'll write a prolog fact "min_rating(answer)"
+
+11. What's the max # of classes per day?
+Write a prolog fact "day_max(answer)"
