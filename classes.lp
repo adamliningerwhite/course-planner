@@ -14,6 +14,8 @@ dept(engl).
 dept(phil).
 dept(psyc).
 
+class_num(4).
+
 
 % OTHER SUBJECT AREAS TO ADD
 % 2. Econ (Doug)

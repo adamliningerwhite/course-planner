@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.Rectangle;
@@ -21,7 +22,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-
 
 public class InputWindow {
 
@@ -88,7 +88,7 @@ public class InputWindow {
 	}
 	
 	public void compileInput() throws IOException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter("../student-input.lp"));		
+		BufferedWriter writer = new BufferedWriter(new FileWriter("student-input.lp"));		
 		
 		writer.write("major(" + majorContainer.getChoice().getItem(majorContainer.getChoice().getSelectedIndex()) + ").\n");
 		writer.write("core_num(" + coreClassesContainer.getChoice().getItem(coreClassesContainer.getChoice().getSelectedIndex()) + ").\n");
@@ -135,6 +135,24 @@ public class InputWindow {
 		writer.write("min_rating(" + ratingContainer.getChoice().getItem(ratingContainer.getChoice().getSelectedIndex()) + ").\n");
 		
 		writer.close();
+		
+//		String command = "/Users/AdamLiningerWhite/course-planner/course-planner/bin/clingo ../classes.lp ../chooser.lp ../student-input.lp > output.txt";
+//		String dir = "/Users/AdamLiningerWhite/course-planner/course-planner/bin/";
+//		Runtime.getRuntime().exec(command, null, new File(dir));
+		
+		ProcessBuilder pb = new ProcessBuilder("bin/clingo", "classes.lp", "chooser.lp");
+		pb.directory(new File("/Users/AdamLiningerWhite/course-planner/course-planner"));
+		pb.redirectOutput(new File ("/Users/AdamLiningerWhite/course-planner/course-planner/output.txt"));
+		Process process = pb.start();
+		try {
+			System.out.println("Reached");
+			process.waitFor();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Done");
+		
 	}
 	
 	/**
