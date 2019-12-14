@@ -28,11 +28,13 @@ public class InputWindow {
 	private final int FRAMEXPOS = 100;
 	private final int FRAMEYPOS = 100;
 	
-	private final int FRAMEWIDTH = 800;
+	private final int FRAMEWIDTH = 1200;
 	private final int FRAMEHEIGHT = 750;
 	
-	private final int PANELWIDTH = 650;
+	private final int PANELWIDTH = 500;
 	private final int PANELHEIGHT = 50;
+	private final int PANELHEIGHT2 = 100;
+	
 	
 	private final int XPADDING = 50;
 	private final int YPADDING = 25;
@@ -175,39 +177,40 @@ public class InputWindow {
 		mainContainer.setBackground(Color.WHITE);
 		mainContainer.setLayout(new GridLayout(1,2));
 		
-		int XPos = frame.getX() + XPADDING;
+		int firstColX = frame.getX() + XPADDING;
+		int secondColX = firstColX + PANELWIDTH + XPADDING;
 		
-		Rectangle majorBounds = new Rectangle(XPos, topContainer.getY() + (2 * YPADDING), PANELWIDTH, PANELHEIGHT);
+		Rectangle majorBounds = new Rectangle(firstColX, topContainer.getY() + (2 * YPADDING), PANELWIDTH, PANELHEIGHT);
 		majorContainer = new ChoiceInputContainer("What is your major?", majorList,  majorBounds);
 		
-		Rectangle coreClassesBounds = new Rectangle(XPos, ((int) majorBounds.getY()) + ((int) majorBounds.getHeight()) + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle coreClassesBounds = new Rectangle(firstColX, ((int) majorBounds.getY()) + ((int) majorBounds.getHeight()) + YPADDING, PANELWIDTH, PANELHEIGHT);
 		coreClassesContainer = new ChoiceInputContainer("How many core requirements do you want to satisfy?", numCourseList, coreClassesBounds);
 		
-		Rectangle electiveClassesBounds = new Rectangle(XPos, (int) coreClassesBounds.getY() + (int) coreClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle electiveClassesBounds = new Rectangle(firstColX, (int) coreClassesBounds.getY() + (int) coreClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
 		electiveClassesContainer = new ChoiceInputContainer("How many elective requirements do you want to satisfy?", numCourseList, electiveClassesBounds);
 		
-		Rectangle previousClassesBounds = new Rectangle(XPos, (int) electiveClassesBounds.getY() + (int) electiveClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle previousClassesBounds = new Rectangle(firstColX, (int) electiveClassesBounds.getY() + (int) electiveClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
 		previousClassesContainer = new TextInputContainer("What classes have you taken?", previousClassesBounds);
 		
-		Rectangle busyBounds = new Rectangle(XPos, (int) previousClassesBounds.getY() + (int) previousClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle busyBounds = new Rectangle(firstColX, (int) previousClassesBounds.getY() + (int) previousClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
 		busyContainer = new TextInputContainer("What times are you busy or don't want to take class?", busyBounds);
 		
-		Rectangle numClassesBounds = new Rectangle(XPos, (int) busyBounds.getY() + (int) busyBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle numClassesBounds = new Rectangle(secondColX, topContainer.getY() + (2 * YPADDING), PANELWIDTH, PANELHEIGHT);
 		numClassesContainer = new ChoiceInputContainer("How many classes do you want to take?", numCourseList, numClassesBounds);
 		
-		Rectangle numClassesPerDayBounds = new Rectangle(XPos, (int) numClassesBounds.getY() + (int) numClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle numClassesPerDayBounds = new Rectangle(secondColX, (int) numClassesBounds.getY() + (int) numClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
 		numClassesPerDayContainer = new ChoiceInputContainer("What is the maximum number of classes you want in a day", numCourseList, numClassesPerDayBounds);
 		
-		Rectangle departmentBounds = new Rectangle(XPos, (int) numClassesPerDayBounds.getY() + (int) numClassesPerDayBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle departmentBounds = new Rectangle(secondColX, (int) numClassesPerDayBounds.getY() + (int) numClassesPerDayBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
 		departmentContainer = new TextInputContainer("What departments do you want to take classes in and associated number in that department?", departmentBounds);
 		
-		Rectangle notDepartmentBounds = new Rectangle(XPos, (int) departmentBounds.getY() + (int) departmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle notDepartmentBounds = new Rectangle(secondColX, (int) departmentBounds.getY() + (int) departmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
 		notDepartmentContainer = new TextInputContainer("What departments do you not want to take classes in?", notDepartmentBounds);
 		
-		Rectangle workloadBounds = new Rectangle(XPos, (int) notDepartmentBounds.getY() + (int) notDepartmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle workloadBounds = new Rectangle(secondColX, (int) notDepartmentBounds.getY() + (int) notDepartmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
 		workloadContainer = new ChoiceInputContainer("What is you maximum workload?", workloadList, workloadBounds);
 		
-		Rectangle ratingBounds = new Rectangle(XPos, (int) workloadBounds.getY() + (int) workloadBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle ratingBounds = new Rectangle(secondColX, (int) workloadBounds.getY() + (int) workloadBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
 		ratingContainer = new ChoiceInputContainer("What is you minimum class rating?", ratingList, ratingBounds);
 		
 		bottomContainer = new JPanel();

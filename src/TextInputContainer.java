@@ -2,6 +2,7 @@ import java.awt.Choice;
 import java.awt.Color;
 import java.awt.Rectangle;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,11 +22,13 @@ public class TextInputContainer {
 		container = new JPanel();
 		label = new JLabel(lableText);
 		textArea = new JTextArea();
+		textArea.setLineWrap(true);
 		layout = new BoxLayout(container, BoxLayout.Y_AXIS);
 		container.setLayout(layout);
 		container.setBounds(bounds);
 		
 		container.add(label);
+		container.add(Box.createHorizontalGlue());
 		container.add(textArea);
 		container.setBackground(BOXCOLOR);
 		
