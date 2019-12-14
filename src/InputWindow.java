@@ -88,7 +88,7 @@ public class InputWindow {
 	}
 	
 	public void compileInput() throws IOException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\dougi\\Desktop\\College\\Second Year\\Sem 2\\CS 62\\CS62Workspace\\AI-FinalProject\\src\\Input.txt"));		
+		BufferedWriter writer = new BufferedWriter(new FileWriter("../student-input.lp"));		
 		
 		writer.write("major(" + majorContainer.getChoice().getItem(majorContainer.getChoice().getSelectedIndex()) + ").\n");
 		writer.write("core_num(" + coreClassesContainer.getChoice().getItem(coreClassesContainer.getChoice().getSelectedIndex()) + ").\n");
