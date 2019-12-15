@@ -25,7 +25,7 @@ We will write a prolog fact "#const class_num = answer"
 
 7. (Optional) list departments in which you definitely want to take classes, and tell us how many should be in that department.
 Answers will look like "csci 2, poli 1"
-For each entry, we will write a prolog fact of the form "desired_num(dept, num)"
+For each entry, we will write a prolog fact of the form "desired_dept(dept, num)"
 
 8. (Optional) list departments in which you definitely don't want to take any classes
 Answers will look like "csci, art, econ, etc."
