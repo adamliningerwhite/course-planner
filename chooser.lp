@@ -104,7 +104,7 @@ dept_num(Dept, Num) :-
     1, C : picked_class(C), class_dept(C, Dept)
   }.
 % Make sure that the assigned number per department matches the desired number
-:- dept_num(Dept1, Num1), desired_num(Dept2, Num2), Dept1 = Dept2, Num1 != Num2.
+:- dept_num(Dept1, Num1), desired_dept(Dept2, Num2), Dept1 = Dept2, Num1 != Num2.
 
 % --------------------------------------------------------------------------
 

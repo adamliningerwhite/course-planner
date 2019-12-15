@@ -32,11 +32,11 @@ public class InputWindow {
 	private final int FRAMEYPOS = 100;
 	
 	private final int FRAMEWIDTH = 1200;
-	private final int FRAMEHEIGHT = 800;
+	private final int FRAMEHEIGHT = 700;
 	
 	private final int PANELWIDTH = 500;
-	private final int PANELHEIGHT = 75;
-	private final int PANELHEIGHT2 = 100;
+	private final int PANELHEIGHT = 65;
+	private final int PANELHEIGHT2 = 95;
 	
 	private final int XPADDING = 55;
 	private final int YPADDING = 25;
@@ -74,6 +74,8 @@ public class InputWindow {
 	
 	private final Color MAINCOLOR = new Color(255, 255, 255);
 	
+	private String cwd = System.getProperty("user.dir");
+	
 
 	/**
 	 * Create the application.
@@ -83,8 +85,8 @@ public class InputWindow {
 	}
 	
 	public void compileInput() throws IOException {
-		String cwd = System.getProperty("user.dir");
-		BufferedWriter writer = new BufferedWriter(new FileWriter(cwd + "\\Input.txt"));
+
+		BufferedWriter writer = new BufferedWriter(new FileWriter(cwd + "/student-input.lp"));
 				
 		writer.write(parseMajor());
 		writer.write(parseCoreRequirements());
@@ -99,6 +101,24 @@ public class InputWindow {
 		writer.write(parseMinRating());
 					
 		writer.close();
+		
+		create_schedule();
+	}
+	
+	private void create_schedule() throws IOException {
+		ProcessBuilder pb = new ProcessBuilder("./clingo", "classes.lp", "chooser.lp", "student-input.lp");
+		pb.directory(new File(cwd));
+		pb.redirectOutput(new File (cwd + "/results.txt"));
+		Process process = pb.start();
+		try {
+			System.out.println("Reached");
+			process.waitFor();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Done");
+		
 	}
 	
 	private String parseMajor() {
@@ -152,7 +172,7 @@ public class InputWindow {
 				
 				for(String busyTime: busyTimes) {
 					String[] busyFields = busyTime.split("_");
-					String day = busyFields[0];
+					String day = busyFields[0].trim();
 					
 					String[] startEnd = busyFields[1].split("-");
 					String[] startTimeFields = startEnd[0].split(":");
@@ -280,10 +300,10 @@ public class InputWindow {
 		electiveClassesContainer = new ChoiceInputContainer("How many elective requirements do you want to satisfy?", numCourseList, electiveClassesBounds);
 		
 		Rectangle previousClassesBounds = new Rectangle(firstColX, (int) electiveClassesBounds.getY() + (int) electiveClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
-		previousClassesContainer = new TextInputContainer("What classes have you taken?", "Ex. csci51", previousClassesBounds);
+		previousClassesContainer = new TextInputContainer("What classes have you taken?", "Ex. csci051, csci062 (use all three digits & separate with commas)", previousClassesBounds);
 		
 		Rectangle busyBounds = new Rectangle(firstColX, (int) previousClassesBounds.getY() + (int) previousClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
-		busyContainer = new TextInputContainer("What times are you busy or don't want to take class?", "Ex. Monday_11:00:am-12:00:pm",busyBounds);
+		busyContainer = new TextInputContainer("What times are you busy or don't want to take class?", "Ex. tues_11:00:am-12:00:pm, thurs_1:00:pm-3:00:pm \nDays are {mon/tues/wed/thurs/fri}",busyBounds);
 		
 		Rectangle numClassesBounds = new Rectangle(secondColX, topContainer.getY() + (2 * YPADDING), PANELWIDTH, PANELHEIGHT);
 		numClassesContainer = new ChoiceInputContainer("How many classes do you want to take?", numCourseList, numClassesBounds);
@@ -292,10 +312,10 @@ public class InputWindow {
 		numClassesPerDayContainer = new ChoiceInputContainer("What is the maximum number of classes you want in a day", numCourseList, numClassesPerDayBounds);
 		
 		Rectangle departmentBounds = new Rectangle(secondColX, (int) numClassesPerDayBounds.getY() + (int) numClassesPerDayBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
-		departmentContainer = new TextInputContainer("What departments do you want to take classes and number of classes?", "Ex. csci-1 (department-num)",departmentBounds);
+		departmentContainer = new TextInputContainer("What departments do you want to take classes and number of classes?", "Ex. csci-1, poli-2 (department-num)",departmentBounds);
 		
 		Rectangle notDepartmentBounds = new Rectangle(secondColX, (int) departmentBounds.getY() + (int) departmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
-		notDepartmentContainer = new TextInputContainer("What departments do you not want to take classes in?", "Ex. poli",notDepartmentBounds);
+		notDepartmentContainer = new TextInputContainer("What departments do you not want to take classes in?", "Ex. poli, csci (separate with commas)",notDepartmentBounds);
 		
 		Rectangle workloadBounds = new Rectangle(secondColX, (int) notDepartmentBounds.getY() + (int) notDepartmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
 		workloadContainer = new ChoiceInputContainer("What is you maximum workload?", workloadList, workloadBounds);

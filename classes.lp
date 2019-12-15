@@ -213,7 +213,7 @@ class_prof(csci181N_01, "Michael Greenberg").
 class_dept(csci181N_01, csci).
 class_rating(csci181N_01, 50).
 class_credits(csci181N_01, 10).
-class_type(csci181N_01, core).
+class_type(csci181N_01, elective).
 class_workload(csci181N_01, 50).
 % No class prerequisites
 class_meets(csci181N_01, "Milikan 1249", tues, 935, 1050).

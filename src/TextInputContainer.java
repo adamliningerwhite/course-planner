@@ -33,7 +33,7 @@ public class TextInputContainer {
 		label = new JLabel(lableText);
 		textArea = new JTextArea(exampleText);
 		textArea.setLineWrap(true);
-		textArea.setColumns(42);
+		textArea.setColumns(38);
 		textArea.setRows(3);
 
 		layout = new BoxLayout(mainContainer, BoxLayout.Y_AXIS);
