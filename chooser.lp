@@ -8,11 +8,10 @@
 % of major requirements fulfilled each semester.
 %
 
-% The maximum number of classes to add to the schedule set
-#const class_num = 4.
 
 % Make a schedule set with class_num number of classes
- class_num {picked_class(C) : class(C)} class_num.
+% Class num comes from student input
+Num {picked_class(C) : class(C)} Num :- class_num(Num).
 
  % meets_at(C, Day, Start, End) :- picked_class(C), class_meets(C, _, Day, Start, End).
  % picked_name(Name) :- picked_class(C), class_name(C, Name).

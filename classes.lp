@@ -14,6 +14,9 @@ dept(engl).
 dept(phil).
 dept(psyc).
 
+class_num(4).
+
+
 % OTHER SUBJECT AREAS TO ADD
 % 2. Econ (Doug)
 % 4. History (Doug)
@@ -955,3 +958,147 @@ class_meets(art139_01, "Studio Arts, 216", thurs, 1315, 1545).
 % --------------------------------------------------
 % ACTUAL CHEMISTRY CLASSES (ADAM)
 %
+class(chem001B_03).
+class_name(chem001B_03, "	General Chemistry w/Laboratory").
+class_prof(chem001B_03, "Malkiat Johal").
+class_dept(chem001B_03, chem).
+class_rating(chem001B_03, 37).
+class_credits(chem001B_03, 10).
+class_type(chem001B_03, core).
+class_workload(chem001B_03, 44).
+prerequisite(chem001B_03, chem001A).
+class_meets(chem001B_03, "Seaver Commons, 102", mon, 1000, 1050).
+class_meets(chem001B_03, "Seaver Commons, 102", wed, 1000, 1050).
+class_meets(chem001B_03, "Seaver Commons, 102", fri, 1000, 1050).
+
+class(chem001B_04).
+class_name(chem001B_04, "	General Chemistry w/Laboratory").
+class_prof(chem001B_04, "Roberto Garza-Lopez").
+class_dept(chem001B_04, chem).
+class_rating(chem001B_04, 37).
+class_credits(chem001B_04, 10).
+class_type(chem001B_04, core).
+class_workload(chem001B_04, 44).
+prerequisite(chem001B_04, chem001A).
+class_meets(chem001B_04, "Seaver Commons, 102", mon, 900, 950).
+class_meets(chem001B_04, "Seaver Commons, 102", wed, 900, 950).
+class_meets(chem001B_04, "Seaver Commons, 102", fri, 900, 950).
+
+class(chem110B_01).
+class_name(chem110B_01, "Organic Chemistry w/Laboratory").
+class_prof(chem110B_01, "Daniel O'Leary").
+class_dept(chem110B_01, chem).
+class_rating(chem110B_01, 34).
+class_credits(chem110B_01, 10).
+class_type(chem110B_01, core).
+class_workload(chem110B_01, 94).
+prerequisite(chem110B_01, chem001B).
+class_meets(chem110B_01, "Seaver North Lab Aud", mon, 800, 850).
+class_meets(chem110B_01, "Seaver North Lab Aud", wed, 800, 850).
+class_meets(chem110B_01, "Seaver North Lab Aud", fri, 800, 850).
+
+class(chem110B_02).
+class_name(chem110B_02, "Organic Chemistry w/Laboratory").
+class_prof(chem110B_02, "Daniel O'Leary").
+class_dept(chem110B_02, chem).
+class_rating(chem110B_02, 34).
+class_credits(chem110B_02, 10).
+class_type(chem110B_02, core).
+class_workload(chem110B_02, 94).
+prerequisite(chem110B_02, chem001B).
+class_meets(chem110B_02, "Seaver North Lab Aud", mon, 900, 950).
+class_meets(chem110B_02, "Seaver North Lab Aud", wed, 900, 950).
+class_meets(chem110B_02, "Seaver North Lab Aud", fri, 900, 950).
+
+
+class(chem112_01).
+class_name(chem112_01, "Analysis Scientific Literature").
+class_prof(chem112_01, "Jane Liu").
+class_dept(chem112_01, chem).
+class_rating(chem112_01, 50).
+class_credits(chem112_01, 10).
+class_type(chem112_01, none).
+class_workload(chem112_01, 20).
+prerequisite(chem112_01, chem110A).
+class_meets(chem112_01, "Seaver Commons 103", tues, 935, 1050).
+class_meets(chem112_01, "Seaver Commons 103", thurs, 935, 1050).
+
+
+class(chem115_01).
+class_name(chem115_01, "Biochemistry w/Laboratory").
+class_prof(chem115_01, "Jane Liu").
+class_dept(chem115_01, chem).
+class_rating(chem115_01, 40).
+class_credits(chem115_01, 10).
+class_type(chem115_01, core).
+class_workload(chem115_01, 51).
+prerequisite(chem115_01, chem110A).
+class_meets(chem115_01, "Seaver Commons 103", tues, 810, 925).
+class_meets(chem115_01, "Seaver Commons 103", thurs, 810, 925).
+
+
+class(chem147_01).
+class_name(chem147_01, "Inorganic Chemistry with Lab").
+class_prof(chem147_01, "Nicholas Ball").
+class_dept(chem147_01, chem).
+class_rating(chem147_01, 30).
+class_credits(chem147_01, 10).
+class_type(chem147_01, core).
+class_workload(chem147_01, 30).
+prerequisite(chem147_01, chem110A).
+class_meets(chem147_01, "Seaver North 202", mon, 1000, 1050).
+class_meets(chem147_01, "Seaver North 202", wed, 1000, 1050).
+class_meets(chem147_01, "Seaver North 202", fri, 1000, 1050).
+
+class(chem156_01).
+class_name(chem156_01, "Physical Chem in Molecular Biol").
+class_prof(chem156_01, "Malkiat Johal").
+class_dept(chem156_01, chem).
+class_rating(chem156_01, 30).
+class_credits(chem156_01, 10).
+class_type(chem156_01, elective).
+class_workload(chem156_01, 43).
+prerequisite(chem156_01, chem110B).
+class_meets(chem156_01, "Seaver North 111", mon, 1100, 1150).
+class_meets(chem156_01, "Seaver North 111", wed, 1100, 1150).
+class_meets(chem156_01, "Seaver North 111", fri, 1100, 1150).
+
+
+class(chem158B_01).
+class_name(chem158B_01, "Physical Chemistry w/ Laboratory").
+class_prof(chem158B_01, "Roberto Garza-Lopez").
+class_dept(chem158B_01, chem).
+class_rating(chem158B_01, 27).
+class_credits(chem158B_01, 10).
+class_type(chem158B_01, core).
+class_workload(chem158B_01, 29).
+prerequisite(chem158B_01, chem158A).
+class_meets(chem158B_01, "Seaver North Lab 202", mon, 1100, 1150).
+class_meets(chem158B_01, "Seaver North Lab 202", wed, 1100, 1150).
+class_meets(chem158B_01, "Seaver North Lab 202", fri, 1100, 1150).
+
+
+class(chem164_01).
+class_name(chem164_01, "Computational Chemistry").
+class_prof(chem164_01, "Torsten Fiebig").
+class_dept(chem164_01, chem).
+% No rating data
+class_credits(chem164_01, 5).
+class_type(chem164_01, core).
+% No workload.
+prerequisite(chem164_01, chem158A).
+class_meets(chem164_01, "Seaver North Lab 202", tues, 935, 1050).
+class_meets(chem164_01, "Seaver North Lab 202", thurs, 935, 1050).
+
+
+class(chem180_01).
+class_name(chem180_01, "Advanced Biochemistry").
+class_prof(chem180_01, "Matthew Sazinsky").
+class_dept(chem180_01, chem).
+class_rating(chem180_01, 43).
+class_credits(chem180_01, 10).
+class_type(chem180_01, elective).
+class_workload(chem180_01, 38).
+prerequisite(chem180_01, chem115).
+class_meets(chem180_01, "Seaver North Lab 111", tues, 935, 1050).
+class_meets(chem180_01, "Seaver North Lab 111", thurs, 935, 1050).

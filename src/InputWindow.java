@@ -26,7 +26,6 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
-
 public class InputWindow {
 
 	private final int FRAMEXPOS = 100;
@@ -270,7 +269,6 @@ public class InputWindow {
 		
 		int firstColX = frame.getX() + XPADDING;
 		int secondColX = firstColX + PANELWIDTH + XPADDING;
-
 		
 		Rectangle majorBounds = new Rectangle(firstColX, topContainer.getY() + (2 * YPADDING), PANELWIDTH, PANELHEIGHT);
 		majorContainer = new ChoiceInputContainer("What is your major?", majorList,  majorBounds);
