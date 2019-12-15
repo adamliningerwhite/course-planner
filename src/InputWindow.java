@@ -7,9 +7,12 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.awt.Rectangle;
 
 import javax.swing.JFrame;
@@ -21,6 +24,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 
 public class InputWindow {
@@ -28,13 +32,14 @@ public class InputWindow {
 	private final int FRAMEXPOS = 100;
 	private final int FRAMEYPOS = 100;
 	
-	private final int FRAMEWIDTH = 800;
-	private final int FRAMEHEIGHT = 750;
+	private final int FRAMEWIDTH = 1200;
+	private final int FRAMEHEIGHT = 800;
 	
-	private final int PANELWIDTH = 650;
-	private final int PANELHEIGHT = 50;
+	private final int PANELWIDTH = 500;
+	private final int PANELHEIGHT = 75;
+	private final int PANELHEIGHT2 = 100;
 	
-	private final int XPADDING = 50;
+	private final int XPADDING = 55;
 	private final int YPADDING = 25;
 	
 	private JFrame frame;
@@ -78,63 +83,169 @@ public class InputWindow {
 		initialize();
 	}
 	
-	public Choice initializeChoices(Choice choice, String[] list) {
-		
-		for(int i = 0; i < list.length; i++) {
-			choice.add(list[i]);
-		}
-		
-		return choice;
+	public void compileInput() throws IOException {
+		String cwd = System.getProperty("user.dir");
+		BufferedWriter writer = new BufferedWriter(new FileWriter(cwd + "\\Input.txt"));
+				
+		writer.write(parseMajor());
+		writer.write(parseCoreRequirements());
+		writer.write(parseElectiveRequirements());
+		writer.write(parsePreviousClasses());
+		writer.write(parseBusyTimes());
+		writer.write(parseNumClasses());
+		writer.write(parseMaxClassesPerDay());
+		writer.write(parseDesiredDepartments());
+		writer.write(parseForbiddenDepartments());
+		writer.write(parseMaxWorkload());
+		writer.write(parseMinRating());
+					
+		writer.close();
 	}
 	
-	public void compileInput() throws IOException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\dougi\\Desktop\\College\\Second Year\\Sem 2\\CS 62\\CS62Workspace\\AI-FinalProject\\src\\Input.txt"));		
+	private String parseMajor() {
+		String studentMajor = majorContainer.getChoice().getItem(majorContainer.getChoice().getSelectedIndex());
+		return "major(" + studentMajor + ").\n";
+	}
+	
+	private String parseCoreRequirements() {
+		String numCoreRequirements = coreClassesContainer.getChoice().getItem(coreClassesContainer.getChoice().getSelectedIndex());
+		return "core_num(" + numCoreRequirements + ").\n";
+	}
+	
+	private String parseElectiveRequirements() {
+		String numElectiveRequirements = electiveClassesContainer.getChoice().getItem(electiveClassesContainer.getChoice().getSelectedIndex());
+		return "elective_num(" + numElectiveRequirements + ").\n";
+	}
+	
+	private String parsePreviousClasses() {
+		String input = previousClassesContainer.getTextArea().getText();
+		String output = "";
 		
-		writer.write("major(" + majorContainer.getChoice().getItem(majorContainer.getChoice().getSelectedIndex()) + ").\n");
-		writer.write("core_num(" + coreClassesContainer.getChoice().getItem(coreClassesContainer.getChoice().getSelectedIndex()) + ").\n");
-		writer.write("elective_num(" + electiveClassesContainer.getChoice().getItem(electiveClassesContainer.getChoice().getSelectedIndex()) + ").\n");
-		
-		if(!previousClassesContainer.getTextArea().getText().equals("")) {
-			String[] previousCourses = previousClassesContainer.getTextArea().getText().split(",");
-			for(int i = 0; i < previousCourses.length; i++) {
-				writer.write("taken(" + previousCourses[i].trim() + ").\n");
-				for(int sectionNum = 1; sectionNum < 5; sectionNum++) {
-					writer.write("taken(" + previousCourses[i].trim() + "_0" + sectionNum + ").\n");
+		if(!input.equals("")) {
+			try {
+				String[] previousClasses = input.split(",");
+				
+				for(String previousClass: previousClasses) {
+					previousClass = previousClass.trim();
+					output += "taken(" + previousClass + ").\n";
+					for(int sectionNum = 1; sectionNum < 5; sectionNum++) {
+						output += "taken(" + previousClass + "_0" + sectionNum + ").\n";
+					}
 				}
+			} catch(Exception e) {
+				previousClassesContainer.getTextArea().setText("Oops, something went wrong please make sure to input in the format: \n[courseCode1, courseCode2, etc.]");
+				return "";
 			}
+			
+		}
+			
+		return output;
+	}
+	
+	private String parseBusyTimes() {
+		String input = busyContainer.getTextArea().getText();
+		String output = "";
+		
+		if(!input.equals("")) {
+			String[] busyTimes;
+			try {
+				busyTimes = busyContainer.getTextArea().getText().split(",");
+				
+				for(String busyTime: busyTimes) {
+					String[] busyFields = busyTime.split("_");
+					String day = busyFields[0];
+					
+					String[] startEnd = busyFields[1].split("-");
+					String[] startTimeFields = startEnd[0].split(":");
+					String[] endTimeFields = startEnd[1].split(":");
+					
+					String start = startTimeFields[0] + startTimeFields[1];
+					String end = endTimeFields[0] + endTimeFields[1];
+					
+					if (startTimeFields[2].equals("pm") && !startTimeFields[0].equals("12")) {
+						System.out.println("adding time");
+						start = Integer.toString((Integer.parseInt(startTimeFields[0]) + 12)) + startTimeFields[1];
+					}
+
+					if (endTimeFields[2].equals("pm")  && !endTimeFields[0].equals("12")) {
+						end = Integer.toString((Integer.parseInt(endTimeFields[0]) + 12)) + endTimeFields[1];
+					}
+
+					output += "busy(" + day + ", "+ Integer.parseInt(start) + ", " + Integer.parseInt(end) + ").\n";
+				}
+			} catch(Exception e) {
+				busyContainer.getTextArea().setText("Oops, something went wrong please make sure to input in the format: \n[Day1-Start1-End1, Day2-Start2-End2, etc.]");
+				return "";
+			}
+	
+		}
+		return output;
+	}
+	
+	private String parseNumClasses() {
+		String numClasses = numClassesContainer.getChoice().getItem(numClassesContainer.getChoice().getSelectedIndex());
+		return "num_classes(" + numClasses + ").\n";
+	}
+	
+	private String parseMaxClassesPerDay() {
+		String maxClassesPerDay = numClassesPerDayContainer.getChoice().getItem(numClassesPerDayContainer.getChoice().getSelectedIndex());
+		return "day_max(" + maxClassesPerDay + ").\n";
+
+	}
+	
+	private String parseDesiredDepartments() {
+		String input = departmentContainer.getTextArea().getText();
+		String output = "";
+		
+		if(!input.equals("")) {
+			
+			try {
+				String[] departments = input.split(",");
+				
+				for(String department: departments) {
+					String[] departmentFields = department.split("-");
+					output += "desired_dept(" + departmentFields[0].trim() + ", " + departmentFields[1].trim() + ").\n";
+				}
+			} catch(Exception e) {
+				departmentContainer.getTextArea().setText("Oops, something went wrong please make sure to input in the format: \n[department1-num1, department2-num2, etc.]");
+				return "";
+			}
+			
 		}
 		
-		if(!busyContainer.getTextArea().getText().equals("")) {
-			System.out.println("x" + busyContainer.getTextArea().getText() + "x");
-			String[] busyTimes = busyContainer.getTextArea().getText().split(",");
-			for(int i = 0; i < busyTimes.length; i++) {
-				String[] busyTime = busyTimes[i].split("-");
-				writer.write("busy(" + busyTime[0].trim() + ", " + busyTime[1].trim() + ", " + busyTime[2].trim() + ").\n");
+		return output;
+	}
+	
+	private String parseForbiddenDepartments() {
+		String input = notDepartmentContainer.getTextArea().getText();
+		String output = "";
+		
+		if(!input.equals("")) {
+			try {
+				String[] forbiddenDepartments = notDepartmentContainer.getTextArea().getText().split(",");
+				
+				for(String forbiddenDepartment: forbiddenDepartments) {
+					output += "forbidden_dept(" + forbiddenDepartment.trim() + ").\n";
+				}
+			} catch(Exception e) {
+				notDepartmentContainer.getTextArea().setText("Oops, something went wrong please make sure to input in the format: \n[department1, department2, etc.]");
+				return "";
 			}
+			
 		}
 		
-		writer.write("num_classes(" + numClassesContainer.getChoice().getItem(numClassesContainer.getChoice().getSelectedIndex()) + ").\n");
-		writer.write("day_max(" + numClassesPerDayContainer.getChoice().getItem(numClassesPerDayContainer.getChoice().getSelectedIndex()) + ").\n");
-		
-		if(!departmentContainer.getTextArea().getText().equals("")) {
-			String[] departments = departmentContainer.getTextArea().getText().split(",");
-			for(int i = 0; i < departments.length; i++) {
-				String[] department = departments[i].split("-");
-				writer.write("desired_num(" + department[0].trim() + ", " + department[1].trim() + ").\n");
-			}
-		}
-		
-		if(!notDepartmentContainer.getTextArea().getText().equals("")) {
-			String[] notDepartments = notDepartmentContainer.getTextArea().getText().split(",");
-			for(int i = 0; i < notDepartments.length; i++) {
-				writer.write("forbidden_dept(" + notDepartments[i].trim() + ").\n");
-			}
-		}
-		
-		writer.write("max_workload(" + workloadContainer.getChoice().getItem(workloadContainer.getChoice().getSelectedIndex()) + ").\n");
-		writer.write("min_rating(" + ratingContainer.getChoice().getItem(ratingContainer.getChoice().getSelectedIndex()) + ").\n");
-		
-		writer.close();
+		return output;
+	}
+	
+	private String parseMaxWorkload() {
+		String workload = workloadContainer.getChoice().getItem(workloadContainer.getChoice().getSelectedIndex());
+		return "max_workload(" +  (Integer.parseInt(workload)* 10) + ").\n";
+	}
+	
+	private String parseMinRating() {
+		String rating = ratingContainer.getChoice().getItem(ratingContainer.getChoice().getSelectedIndex());
+		return "min_rating(" +  ( (int) (Double.parseDouble(rating) * 10)) + ").\n";
+
 	}
 	
 	/**
@@ -157,39 +268,41 @@ public class InputWindow {
 		mainContainer.setBackground(Color.WHITE);
 		mainContainer.setLayout(new GridLayout(1,2));
 		
-		int XPos = frame.getX() + XPADDING;
+		int firstColX = frame.getX() + XPADDING;
+		int secondColX = firstColX + PANELWIDTH + XPADDING;
+
 		
-		Rectangle majorBounds = new Rectangle(XPos, topContainer.getY() + (2 * YPADDING), PANELWIDTH, PANELHEIGHT);
+		Rectangle majorBounds = new Rectangle(firstColX, topContainer.getY() + (2 * YPADDING), PANELWIDTH, PANELHEIGHT);
 		majorContainer = new ChoiceInputContainer("What is your major?", majorList,  majorBounds);
 		
-		Rectangle coreClassesBounds = new Rectangle(XPos, ((int) majorBounds.getY()) + ((int) majorBounds.getHeight()) + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle coreClassesBounds = new Rectangle(firstColX, ((int) majorBounds.getY()) + ((int) majorBounds.getHeight()) + YPADDING, PANELWIDTH, PANELHEIGHT);
 		coreClassesContainer = new ChoiceInputContainer("How many core requirements do you want to satisfy?", numCourseList, coreClassesBounds);
 		
-		Rectangle electiveClassesBounds = new Rectangle(XPos, (int) coreClassesBounds.getY() + (int) coreClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle electiveClassesBounds = new Rectangle(firstColX, (int) coreClassesBounds.getY() + (int) coreClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
 		electiveClassesContainer = new ChoiceInputContainer("How many elective requirements do you want to satisfy?", numCourseList, electiveClassesBounds);
 		
-		Rectangle previousClassesBounds = new Rectangle(XPos, (int) electiveClassesBounds.getY() + (int) electiveClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
-		previousClassesContainer = new TextInputContainer("What classes have you taken?", previousClassesBounds);
+		Rectangle previousClassesBounds = new Rectangle(firstColX, (int) electiveClassesBounds.getY() + (int) electiveClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
+		previousClassesContainer = new TextInputContainer("What classes have you taken?", "Ex. csci51", previousClassesBounds);
 		
-		Rectangle busyBounds = new Rectangle(XPos, (int) previousClassesBounds.getY() + (int) previousClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
-		busyContainer = new TextInputContainer("What times are you busy or don't want to take class?", busyBounds);
+		Rectangle busyBounds = new Rectangle(firstColX, (int) previousClassesBounds.getY() + (int) previousClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
+		busyContainer = new TextInputContainer("What times are you busy or don't want to take class?", "Ex. Monday_11:00:am-12:00:pm",busyBounds);
 		
-		Rectangle numClassesBounds = new Rectangle(XPos, (int) busyBounds.getY() + (int) busyBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle numClassesBounds = new Rectangle(secondColX, topContainer.getY() + (2 * YPADDING), PANELWIDTH, PANELHEIGHT);
 		numClassesContainer = new ChoiceInputContainer("How many classes do you want to take?", numCourseList, numClassesBounds);
 		
-		Rectangle numClassesPerDayBounds = new Rectangle(XPos, (int) numClassesBounds.getY() + (int) numClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle numClassesPerDayBounds = new Rectangle(secondColX, (int) numClassesBounds.getY() + (int) numClassesBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
 		numClassesPerDayContainer = new ChoiceInputContainer("What is the maximum number of classes you want in a day", numCourseList, numClassesPerDayBounds);
 		
-		Rectangle departmentBounds = new Rectangle(XPos, (int) numClassesPerDayBounds.getY() + (int) numClassesPerDayBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
-		departmentContainer = new TextInputContainer("What departments do you want to take classes in and associated number in that department?", departmentBounds);
+		Rectangle departmentBounds = new Rectangle(secondColX, (int) numClassesPerDayBounds.getY() + (int) numClassesPerDayBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
+		departmentContainer = new TextInputContainer("What departments do you want to take classes and number of classes?", "Ex. csci-1 (department-num)",departmentBounds);
 		
-		Rectangle notDepartmentBounds = new Rectangle(XPos, (int) departmentBounds.getY() + (int) departmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
-		notDepartmentContainer = new TextInputContainer("What departments do you not want to take classes in?", notDepartmentBounds);
+		Rectangle notDepartmentBounds = new Rectangle(secondColX, (int) departmentBounds.getY() + (int) departmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT2);
+		notDepartmentContainer = new TextInputContainer("What departments do you not want to take classes in?", "Ex. poli",notDepartmentBounds);
 		
-		Rectangle workloadBounds = new Rectangle(XPos, (int) notDepartmentBounds.getY() + (int) notDepartmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle workloadBounds = new Rectangle(secondColX, (int) notDepartmentBounds.getY() + (int) notDepartmentBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
 		workloadContainer = new ChoiceInputContainer("What is you maximum workload?", workloadList, workloadBounds);
 		
-		Rectangle ratingBounds = new Rectangle(XPos, (int) workloadBounds.getY() + (int) workloadBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
+		Rectangle ratingBounds = new Rectangle(secondColX, (int) workloadBounds.getY() + (int) workloadBounds.getHeight() + YPADDING, PANELWIDTH, PANELHEIGHT);
 		ratingContainer = new ChoiceInputContainer("What is you minimum class rating?", ratingList, ratingBounds);
 		
 		bottomContainer = new JPanel();

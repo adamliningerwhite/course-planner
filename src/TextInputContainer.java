@@ -1,5 +1,6 @@
 import java.awt.Choice;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Rectangle;
 
 import javax.swing.BoxLayout;
@@ -9,7 +10,9 @@ import javax.swing.JTextArea;
 
 public class TextInputContainer {
 	
-	private JPanel container;
+	private JPanel labelContainer;
+	private JPanel textContainer;
+	private JPanel mainContainer;
 	private JLabel label;
 	private JTextArea textArea;
 	private BoxLayout layout;
@@ -17,22 +20,33 @@ public class TextInputContainer {
 	private final Color BOXCOLOR = new Color(51, 153, 255);
 
 	
-	public TextInputContainer(String lableText, Rectangle bounds) {
-		container = new JPanel();
+	public TextInputContainer(String lableText, String exampleText, Rectangle bounds) {
+		mainContainer = new JPanel();
+		labelContainer = new JPanel();
+		textContainer = new JPanel();
+		
+		mainContainer.setBackground(BOXCOLOR);
+		labelContainer.setBackground(BOXCOLOR);
+		textContainer.setBackground(BOXCOLOR);
+		
 		label = new JLabel(lableText);
-		textArea = new JTextArea();
-		layout = new BoxLayout(container, BoxLayout.Y_AXIS);
-		container.setLayout(layout);
-		container.setBounds(bounds);
+		textArea = new JTextArea(exampleText);
+		textArea.setLineWrap(true);
+		textArea.setColumns(42);
+		textArea.setRows(3);
+
+		layout = new BoxLayout(mainContainer, BoxLayout.Y_AXIS);
+		mainContainer.setLayout(layout);
+		mainContainer.setBounds(bounds);
 		
-		container.add(label);
-		container.add(textArea);
-		container.setBackground(BOXCOLOR);
-		
+		labelContainer.add(label);
+		textContainer.add(textArea);
+		mainContainer.add(labelContainer);
+		mainContainer.add(textContainer);		
 	}
 	
 	public JPanel getContainer() {
-		return container;
+		return mainContainer;
 	}
 	
 	public JLabel getLabel() {

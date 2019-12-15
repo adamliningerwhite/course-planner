@@ -1,5 +1,6 @@
 import java.awt.Choice;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -9,40 +10,47 @@ import java.awt.Rectangle;
 
 public class ChoiceInputContainer {
 	
-	private JPanel container;
+	private JPanel labelContainer;
+	private JPanel choiceContainer;
+	private JPanel mainContainer;
 	private JLabel label;
 	private Choice choices;
 	private BoxLayout layout;
 	
 	private final Color BOXCOLOR = new Color(51, 153, 255);
 	
-
 	public ChoiceInputContainer(String lableText, String[] choicesText, Rectangle bounds) {
-		container = new JPanel();
+		mainContainer = new JPanel();
+		labelContainer = new JPanel();
+		choiceContainer = new JPanel();
+		
+		mainContainer.setBackground(BOXCOLOR);
+		labelContainer.setBackground(BOXCOLOR);
+		choiceContainer.setBackground(BOXCOLOR);
+				
 		label = new JLabel(lableText);
 		choices = new Choice();
-		layout = new BoxLayout(container, BoxLayout.Y_AXIS);
-		container.setBounds(bounds);
-		container.setLayout(layout);
-		container.setBackground(BOXCOLOR);
 		
-		container.add(label);
-		container.add(choices);
+		layout = new BoxLayout(mainContainer, BoxLayout.Y_AXIS);
+		mainContainer.setBounds(bounds);
+		mainContainer.setLayout(layout);
+		
+		labelContainer.add(label);
+		choiceContainer.add(choices);
+		mainContainer.add(labelContainer);
+		mainContainer.add(choiceContainer);
 
 		initializeChoices(choicesText);
-		
 	}
 
-	public void initializeChoices(String[] choiceText) {
-		
+	public void initializeChoices(String[] choiceText) {		
 		for(int i = 0; i < choiceText.length; i++) {
 			choices.add(choiceText[i]);
 		}
-		
 	}
 	
 	public JPanel getContainer() {
-		return container;
+		return mainContainer;
 	}
 	
 	public JLabel getLabel() {
