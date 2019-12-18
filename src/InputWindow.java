@@ -89,7 +89,7 @@ public class InputWindow {
 	
 	public void compileInput() throws IOException {
 
-		BufferedWriter writer = new BufferedWriter(new FileWriter(cwd + "\\student-input.lp"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(cwd + "/student-input.lp"));
 				
 		writer.write(parseMajor());
 		writer.write(parseCoreRequirements());
@@ -109,9 +109,9 @@ public class InputWindow {
 	}
 	
 	private void create_schedule() throws IOException {
-		ProcessBuilder pb = new ProcessBuilder(".\\clingo", "classes.lp", "chooser.lp", "student-input.lp");
+		ProcessBuilder pb = new ProcessBuilder("./clingo", "classes.lp", "chooser.lp", "student-input.lp");
 		pb.directory(new File(cwd));
-		pb.redirectOutput(new File (cwd + "\\results.txt"));
+		pb.redirectOutput(new File (cwd + "/results.txt"));
 		Process process = pb.start();
 		try {
 			System.out.println("Reached");
@@ -153,9 +153,10 @@ public class InputWindow {
 
 		String[] pickedClasses = new String[numClasses];
 		int classCtr = 0;
-		String filePath = cwd + "\\results.txt";
+		String filePath = cwd + "/results.txt";
 		BufferedReader br;
 		String pattern = "picked_class.*";
+		String unsat = "UNSATISFIABLE";
 		String line = "";
 	
 		try {
@@ -169,6 +170,8 @@ public class InputWindow {
 						int index = classCtr % numClasses;
 						pickedClasses[index] = word;
 						classCtr++;
+					  } else if (word.equals(unsat)) {
+						return new String[] {unsat};
 					  }
 					}	
 				}

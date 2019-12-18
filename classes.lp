@@ -42,33 +42,33 @@ class_num(4).
 % ACTUAL CS CLASSES (ADAM)
 %
 
-class(csci051A_01).
-class_name(csci051A_01, "Intro to CS with Topics in AI").
-class_prof(csci051A_01, "Joseph Osborn").
-class_dept(csci051A_01, csci).
+class(csci051_01).
+class_name(csci051_01, "Intro to CS with Topics in AI").
+class_prof(csci051_01, "Joseph Osborn").
+class_dept(csci051_01, csci).
 % No rating
-class_credits(csci051A_01, 10).
-class_type(csci051A_01, core).
+class_credits(csci051_01, 10).
+class_type(csci051_01, core).
 % No class workload
 % No class prerequisites
-class_meets(csci051A_01, "Edmunds 101", mon, 1100, 1215).
-class_meets(csci051A_01, "Edmunds 101", wed, 1100, 1215).
-class_meets(csci051A_01, "Edmunds 219", wed, 1900, 2150).
+class_meets(csci051_01, "Edmunds 101", mon, 1100, 1215).
+class_meets(csci051_01, "Edmunds 101", wed, 1100, 1215).
+class_meets(csci051_01, "Edmunds 219", wed, 1900, 2150).
 
 
-class(csci051P_01).
-class_name(csci051P_01, "Intro to CS in Python with Lab").
-class_prof(csci051P_01, "Tzu-Yi Chen").
-class_dept(csci051P_01, csci).
+class(csci051_02).
+class_name(csci051_02, "Intro to CS in Python with Lab").
+class_prof(csci051_02, "Tzu-Yi Chen").
+class_dept(csci051_02, csci).
 % No rating
-class_credits(csci051P_01, 10).
-class_type(csci051P_01, core).
+class_credits(csci051_02, 10).
+class_type(csci051_02, core).
 % No class workload
 % No class prerequisites
-class_meets(csci051P_01, "Edmunds 114", mon, 1000, 1050).
-class_meets(csci051P_01, "Edmunds 114", wed, 1000, 1050).
-class_meets(csci051P_01, "Edmunds 114", fri, 1000, 1050).
-class_meets(csci051P_01, "Edmunds 219", thurs, 1315, 1600).
+class_meets(csci051_02, "Edmunds 114", mon, 1000, 1050).
+class_meets(csci051_02, "Edmunds 114", wed, 1000, 1050).
+class_meets(csci051_02, "Edmunds 114", fri, 1000, 1050).
+class_meets(csci051_02, "Edmunds 219", thurs, 1315, 1600).
 
 
 class(csci054_01).
