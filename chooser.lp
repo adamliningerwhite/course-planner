@@ -119,7 +119,7 @@ core_assigned(Dept, Num) :-
   Num = #sum {
     1, C : picked_class(C), class_dept(C, Dept), class_type(C, core)
   }.
-:- major(Dept), core_assigned(Dept, Num1), core_num(Dept, Num2), Num1 != Num2.
+:- major(Dept), core_assigned(Dept, Num1), core_num(Num2), Num1 < Num2.
 
 % --------------------------------------------------------------------------
 
