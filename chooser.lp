@@ -55,7 +55,7 @@ Num {picked_class(C) : class(C)} Num :- class_num(Num).
 
 % --------------------------------------------------------------------------
 
-% C6: Make sure our chosen schedule has enough credits
+% C6: Make sure our chosen schedule has enough credits (Scrapped)
 % % Calculate the number of credits in our current schedule
 % schedule_credits(Creds) :-
 %   Creds = #sum {
@@ -75,7 +75,7 @@ Num {picked_class(C) : class(C)} Num :- class_num(Num).
 % Calculate the hrs work/week for our current schedule
 schedule_workload(Hrs) :-
   Hrs = #sum{
-    H : picked_class(C), class_workload(C, H)
+    H, C : picked_class(C), class_workload(C, H)
   }.
 % Make sure our schedule doesn't have too many hours of work
 :~ schedule_workload(Hrs), max_workload(Max), Hrs > Max. [1@1]
@@ -86,13 +86,13 @@ schedule_workload(Hrs) :-
 
 % Prefer classes which have rating datapoint
 :~ picked_class(C),
-   0 = {class_rating(C, R)}. [1@1]
+   0 = {class_rating(C, R)}. [1@0]
 
 % Then prefer classes which don't violate min rating standards
 :~ picked_class(C),
     class_rating(C, R1),
     min_rating(R2),
-    R1 < R2. [1@1]
+    R1 < R2. [1@0]
 
 % --------------------------------------------------------------------------
 
@@ -129,16 +129,23 @@ electives_assigned(Dept, Num) :-
   Num = #sum {
     1, C : picked_class(C), class_dept(C, Dept), class_type(C, elective)
   }.
-:- major(Dept), electives_assigned(Dept, Num1), elective_num(Dept, Num2), Num1 != Num2.
+:- major(Dept), electives_assigned(Dept, Num1), elective_num(Dept, Num2), Num1 < Num2.
 
 % --------------------------------------------------------------------------
 
-% C13: Max number of classes per day
-% TODO
+% C13: Make sure we don't schedule too many classes on one day
+day_num(Day, Num) :-
+  day(Day),
+  Num = #sum {
+    1, C : picked_class(C), class_meets(C, _Loc, Day, _Start, _End)
+  }.
+:- day_num(Day, Num1), day_max(Num2), Num1 > Num2.
+
 
 % --------------------------------------------------------------------------
 % C14: Optimize schedules to maximize total rating across all assigned classes
 rating_sum(Num) :-
   Num = #sum {
-    R : picked_class(C), class_rating(C, R)
+    R, C : picked_class(C), class_rating(C, R)
 }.
+#maximize{Num@1:rating_sum(Num)}.
