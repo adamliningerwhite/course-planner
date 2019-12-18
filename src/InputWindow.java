@@ -13,7 +13,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Pattern;
 import java.awt.Rectangle;
+import java.io.FileReader;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -69,7 +72,7 @@ public class InputWindow {
 	private String[] numCourseList = {"0", "1", "2", "3", "4", "5", "6"};
 	private String[] workloadList = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
 										"11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-										"21", "22", "23", "24", "25"};
+										"21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"};
 	private String[] ratingList = {"1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5"};
 	
 	private final Color MAINCOLOR = new Color(255, 255, 255);
@@ -86,7 +89,7 @@ public class InputWindow {
 	
 	public void compileInput() throws IOException {
 
-		BufferedWriter writer = new BufferedWriter(new FileWriter(cwd + "/student-input.lp"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(cwd + "\\student-input.lp"));
 				
 		writer.write(parseMajor());
 		writer.write(parseCoreRequirements());
@@ -106,9 +109,9 @@ public class InputWindow {
 	}
 	
 	private void create_schedule() throws IOException {
-		ProcessBuilder pb = new ProcessBuilder("./clingo", "classes.lp", "chooser.lp", "student-input.lp");
+		ProcessBuilder pb = new ProcessBuilder(".\\clingo", "classes.lp", "chooser.lp", "student-input.lp");
 		pb.directory(new File(cwd));
-		pb.redirectOutput(new File (cwd + "/results.txt"));
+		pb.redirectOutput(new File (cwd + "\\results.txt"));
 		Process process = pb.start();
 		try {
 			System.out.println("Reached");
@@ -118,7 +121,67 @@ public class InputWindow {
 			e.printStackTrace();
 		}
 		System.out.println("Done");
+
+		String[] pickedClasses = parseOptimum();
+		displaySchedule(pickedClasses);
 		
+	}
+
+	private void displaySchedule(String[] pickedClasses) {
+		System.out.println("I am printing results");
+		JPanel results = new JPanel();
+		BoxLayout layout = new BoxLayout(results, BoxLayout.Y_AXIS);
+		results.setLayout(layout);
+
+		for(String pickedClass: pickedClasses) {
+			JLabel label = new JLabel(pickedClass);
+			results.add(label);
+		}
+
+		JFrame resultsFrame = new JFrame();
+		
+		resultsFrame.setVisible(true);
+		resultsFrame.setSize(FRAMEWIDTH, FRAMEHEIGHT);
+		resultsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		resultsFrame.add(results);
+
+	}
+
+
+	private String[] parseOptimum() {
+		int numClasses = Integer.parseInt(numClassesContainer.getChoice().getItem(numClassesContainer.getChoice().getSelectedIndex()));
+
+		String[] pickedClasses = new String[numClasses];
+		int classCtr = 0;
+		String filePath = cwd + "\\results.txt";
+		BufferedReader br;
+		String pattern = "picked_class.*";
+		String line = "";
+	
+		try {
+			br = new BufferedReader(new FileReader(filePath));
+			try {
+				while((line = br.readLine()) != null) {
+					String[] words = line.split(" ");
+	
+					for (String word : words) {
+					  if (Pattern.matches(pattern, word)) {
+						int index = classCtr % numClasses;
+						pickedClasses[index] = word;
+						classCtr++;
+					  }
+					}	
+				}
+				br.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pickedClasses;
 	}
 	
 	private String parseMajor() {
