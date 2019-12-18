@@ -68,7 +68,7 @@ public class InputWindow {
 	private final Font TITLEFONT = new Font("Courier", Font.BOLD, 24);
 	private final Font MAINFONT = new Font("Courier", Font.BOLD, 14);
 	
-	private String[] majorList = {"csci", "math", "econ", "poli"};
+	private String[] majorList = {"csci", "math", "econ", "poli", "chem", "hist", "art", "bio", "engl", "psych"};
 	private String[] numCourseList = {"0", "1", "2", "3", "4", "5", "6"};
 	private String[] workloadList = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
 										"11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
