@@ -18,13 +18,10 @@ class_num(4).
 
 
 % OTHER SUBJECT AREAS TO ADD
-% 2. Econ (Doug)
 % 4. History (Doug)
 % 6. Biology (Doug)
-% 7. Chemistry (Adam)
-% 8. English (Doug)
-% 9. Philosophy (Adam)
-% 10. Psychology (Doug)
+% 8. English (Adam)
+% 10. Psychology (Adam)
 
 % -----------------------------------------------
 
@@ -1102,3 +1099,429 @@ class_workload(chem180_01, 38).
 prerequisite(chem180_01, chem115).
 class_meets(chem180_01, "Seaver North Lab 111", tues, 935, 1050).
 class_meets(chem180_01, "Seaver North Lab 111", thurs, 935, 1050).
+
+
+class(econ051_01).
+class_name(econ051_01, "Principles: Macroeconomics").
+class_prof(econ051_01, "Manisha Goel").
+class_dept(econ051_01, econ).
+class_rating(econ051_01, 39).
+class_credits(econ051_01, 10).
+class_type(econ051_01, core).
+class_workload(econ051_01, 32).
+%prerequisite().
+class_meets(econ051_01, "", mon, 1315, 1430).
+class_meets(econ051_01, "", wed, 1315, 1430).
+
+class(econ051_02).
+class_name(econ051_02, "Principles: Macroeconomics").
+class_prof(econ051_02, "Manisha Goel").
+class_dept(econ051_02, econ).
+class_rating(econ051_02, 39).
+class_credits(econ051_02, 10).
+class_type(econ051_02, core).
+class_workload(econ051_02, 32).
+%prerequisite().
+class_meets(econ051_02, "", mon, 1445, 1600).
+class_meets(econ051_02, "", wed, 1445, 1600).
+
+class(econ051_03).
+class_name(econ051_03, "Principles: Macroeconomics").
+class_prof(econ051_03, "Neva Novarro").
+class_dept(econ051_03, econ).
+class_rating(econ051_03, 39).
+class_credits(econ051_03, 10).
+class_type(econ051_03, core).
+class_workload(econ051_03, 32).
+% no prerequisites
+class_meets(econ051_03, "", tues, 810, 925).
+class_meets(econ051_03, "", thurs, 810, 925).
+
+class(econ051_04).
+class_name(econ051_04, "Principles: Macroeconomics").
+class_prof(econ051_04, "Manfred Keil").
+class_dept(econ051_04, econ).
+class_rating(econ051_04, 41).
+class_credits(econ051_04, 10).
+class_type(econ051_04, core).
+class_workload(econ051_04, 32).
+%prerequisite().
+class_meets(econ051_04, "", mon, 1100, 1215).
+class_meets(econ051_04, "", wed, 1100, 1215).
+
+
+
+
+
+class(econ052_01).
+class_name(econ052_01, "Principles: Microeconomics").
+class_prof(econ052_01, "Niree Kodaverdian").
+class_dept(econ052_01, econ).
+class_rating(econ052_01, 33).
+class_credits(econ052_01, 10).
+class_type(econ052_01, core).
+class_workload(econ052_01, 30).
+%prerequisite().
+class_meets(econ052_01, "", mon, 1100, 1215).
+class_meets(econ052_01, "", wed, 1100, 1215).
+
+class(econ052_02).
+class_name(econ052_02, "Principles: Microeconomics").
+class_prof(econ052_02, "Niree Kodaverdian").
+class_dept(econ052_02, econ).
+class_rating(econ052_02, 33).
+class_credits(econ052_02, 10).
+class_type(econ052_02, core).
+class_workload(econ052_02, 30).
+%prerequisite().
+class_meets(econ052_02, "", mon, 1315, 1430).
+class_meets(econ052_02, "", wed, 1315, 1430).
+
+class(econ052_03).
+class_name(econ052_03, "Principles: Microeconomics").
+class_prof(econ052_03, "Niree Kodaverdian").
+class_dept(econ052_03, econ).
+class_rating(econ052_03, 33).
+class_credits(econ052_03, 10).
+class_type(econ052_03, core).
+class_workload(econ052_03, 30).
+%prerequisite().
+class_meets(econ052_03, "", mon, 1445, 1600).
+class_meets(econ052_03, "", wed, 1445, 1600).
+
+class(econ052_04).
+class_name(econ052_04, "Principles: Microeconomics").
+class_prof(econ052_04, "Jennifer Ward-Batts").
+class_dept(econ052_04, econ).
+class_rating(econ052_04, 33).
+class_credits(econ052_04, 10).
+class_type(econ052_04, core).
+class_workload(econ052_04, 30).
+%prerequisite().
+class_meets(econ052_04, "", tues, 935, 1050).
+class_meets(econ052_04, "", thurs, 935, 1050).
+
+
+
+
+class(econ057B_01).
+class_name(econ057B_01, "Economic Statistics").
+class_prof(econ057B_01, "Gary Smith").
+class_dept(econ057B_01, econ).
+% not rating
+class_credits(econ057B_01, 10).
+class_type(econ057B_01, core).
+class_workload(econ057B_01, 30).
+prerequisite(econ057B_01, math30).
+class_meets(econ057B_01, "", mon, 1100, 1215).
+class_meets(econ057B_01, "", wed, 1100, 1215).
+
+class(econ057_01). % not supposed to have a B
+class_name(econ057_01, "Economic Statistics").
+class_prof(econ057_01, "Michelle Zemel").
+class_dept(econ057_01, econ).
+class_rating(econ052_04, 32).
+class_credits(econ057_01, 10).
+class_type(econ057_01, core).
+class_workload(econ057_01, 32).
+prerequisite(econ057_01, math30).
+class_meets(econ057_01, "", tues, 935, 1050).
+class_meets(econ057_01, "", thurs, 935, 1050).
+
+
+
+class(econ101_01). 
+class_name(econ101_01, "Macroeconomic Theory").
+class_prof(econ101_01, "Michael Kuehlwein").
+class_dept(econ101_01, econ).
+class_rating(econ101_01, 45).
+class_credits(econ101_01, 10).
+class_type(econ101_01, core).
+class_workload(econ101_01, 65).
+prerequisite(econ101_01, econ51).
+prerequisite(econ101_01, econ52).
+prerequisite(econ101_01, math29).
+class_meets(econ101_01, "", tues, 935, 1050).
+class_meets(econ101_01, "", thurs, 935, 1050).
+
+
+
+class(econ102_01). 
+class_name(econ102_01, "Microeconomic Theory").
+class_prof(econ102_01, "Eleanor Brown").
+class_dept(econ102_01, econ).
+class_rating(econ102_01, 41).
+class_credits(econ102_01, 10).
+class_type(econ102_01, core).
+class_workload(econ102_01, 35).
+prerequisite(econ102_01, econ51).
+prerequisite(econ102_01, econ52).
+prerequisite(econ102_01, math29).
+class_meets(econ102_01, "", mon, 1445, 1600).
+class_meets(econ102_01, "", wed, 1445, 1600).
+
+class(econ102_02). 
+class_name(econ102_02, "Microeconomic Theory").
+class_prof(econ102_02, "Emiliano Huet-Vaughn").
+class_dept(econ102_02, econ).
+class_rating(econ102_02, 41).
+class_credits(econ102_02, 10).
+class_type(econ102_02, core).
+class_workload(econ102_02, 35).
+prerequisite(econ102_02, econ51).
+prerequisite(econ102_02, econ52).
+prerequisite(econ102_02, math29).
+class_meets(econ102_02, "", tues, 935, 1050).
+class_meets(econ102_02, "", thurs, 935, 1050).
+
+
+
+class(econ107_01). 
+class_name(econ107_01, "Applied Econometrics").
+class_prof(econ107_01, "Kyle Wilson").
+class_dept(econ107_01, econ).
+class_rating(econ107_01, 35).
+class_credits(econ107_01, 10).
+class_type(econ107_01, core).
+class_workload(econ107_01, 67).
+prerequisite(econ107_01, econ51).
+prerequisite(econ107_01, econ52).
+prerequisite(econ107_01, econ51).
+prerequisite(econ107_01, econ52).
+prerequisite(econ107_01, econ57).
+class_meets(econ107_01, "", mon, 1100, 1215).
+class_meets(econ107_01, "", wed, 1100, 1215).
+
+class(econ107_02). 
+class_name(econ107_02, "Applied Econometrics").
+class_prof(econ107_02, "Bowman Cutter").
+class_dept(econ107_02, econ).
+class_rating(econ107_02, 35).
+class_credits(econ107_02, 10).
+class_type(econ107_02, core).
+class_workload(econ107_02, 67).
+prerequisite(econ107_02, econ51).
+prerequisite(econ107_02, econ52).
+prerequisite(econ107_02, econ51).
+prerequisite(econ107_02, econ52).
+prerequisite(econ107_02, econ57).
+class_meets(econ107_02, "", tues, 1315, 1430).
+class_meets(econ107_02, "", thurs, 1315, 1430).
+
+
+
+class(econ117_01). 
+class_name(econ117_01, "Managerial Acct Finan Analysis").
+class_prof(econ117_01, "Staff").
+class_dept(econ117_01, econ).
+class_rating(econ117_01, 37).
+class_credits(econ117_01, 10).
+class_type(econ117_01, elective).
+class_workload(econ117_01, 20).
+% no preqs
+class_meets(econ117_01, "", fri, 1315, 1600).
+
+
+class(econ120_01). 
+class_name(econ120_01, "Economics of Crime").
+class_prof(econ120_01, "Stephen Marks").
+class_dept(econ120_01, econ).
+class_rating(econ120_01, 26).
+class_credits(econ120_01, 10).
+class_type(econ120_01, elective).
+class_workload(econ120_01, 20).
+prerequisite(econ120_01, econ51).
+class_meets(econ120_01, "", mon, 1445, 1600).
+class_meets(econ120_01, "", wed, 1445, 1600).
+
+
+
+class(econ125_01). 
+class_name(econ125_01, "Natural Resource Econ & Policy").
+class_prof(econ125_01, "John Jurewitz").
+class_dept(econ125_01, econ).
+class_rating(econ125_01, 30).
+class_credits(econ125_01, 10).
+class_type(econ125_01, elective).
+class_workload(econ125_01, 30).
+prerequisite(econ125_01, econ52).
+class_meets(econ125_01, "", tues, 1445, 1600).
+class_meets(econ125_01, "", thurs, 1445, 1600).
+
+
+
+class(econ128_01). 
+class_name(econ128_01, "Energy Economics, & Policy").
+class_prof(econ128_01, "John Jurewitz").
+class_dept(econ128_01, econ).
+class_rating(econ128_01, 40).
+class_credits(econ128_01, 10).
+class_type(econ128_01, elective).
+class_workload(econ128_01, 30).
+prerequisite(econ128_01, econ52).
+class_meets(econ128_01, "", tues, 935, 1050).
+class_meets(econ128_01, "", thurs, 935, 1050).
+
+
+
+class(econ129_01). 
+class_name(econ129_01, "Health Economics").
+class_prof(econ129_01, "Daniel O'Leary").
+class_dept(econ129_01, econ).
+class_rating(econ129_01, 30).
+class_credits(econ129_01, 10).
+class_type(econ129_01, elective).
+class_workload(econ129_01, 35).
+prerequisite(econ129_01, econ52).
+class_meets(econ129_01, "", tues, 810, 925).
+class_meets(econ129_01, "", thurs, 810, 925).
+
+
+class(econ130_01). 
+class_name(econ130_01, "Health Economics").
+class_prof(econ130_01, "Malte Dold").
+class_dept(econ130_01, econ).
+class_rating(econ130_01, 50).
+class_credits(econ130_01, 10).
+class_type(econ130_01, elective).
+class_workload(econ130_01, 50).
+prerequisite(econ130_01, econ52).
+prerequisite(econ130_01, econ57).
+class_meets(econ130_01, "", mon, 1100, 1215).
+class_meets(econ130_01, "", wed, 1100, 1215).
+
+
+
+
+class(econ132_01). 
+class_name(econ132_01, "Empirical Methods of IO").
+class_prof(econ132_01, "Kyle Wilson").
+class_dept(econ132_01, econ).
+% no rating
+class_credits(econ132_01, 10).
+class_type(econ132_01, elective).
+% no workload
+prerequisite(econ132_01, econ52).
+prerequisite(econ132_01, econ57).
+class_meets(econ132_01, "", mon, 1445, 1600).
+class_meets(econ132_01, "", wed, 1445, 1600).
+
+
+
+class(econ151_01). 
+class_name(econ151_01, "Labor Economics").
+class_prof(econ151_01, "Jennifer Ward-Batts").
+class_dept(econ151_01, econ).
+class_rating(econ151_01, 42)
+class_credits(econ151_01, 10).
+class_type(econ151_01, elective).
+class_workload(econ151_01, 78).
+prerequisite(econ151_01, econ57).
+prerequisite(econ151_01, econ101).
+prerequisite(econ151_01, econ102).
+class_meets(econ151_01, "", tues, 1315, 1430).
+class_meets(econ151_01, "", thurs, 1315, 1430).
+
+
+
+class(econ154_01). 
+class_name(econ154_01, "Game Theory for Economists").
+class_prof(econ154_01, "Neva Novarro").
+class_dept(econ154_01, econ).
+class_rating(econ154_01, 32)
+class_credits(econ154_01, 10).
+class_type(econ154_01, elective).
+class_workload(econ154_01, 40).
+prerequisite(econ154_01, econ57).
+prerequisite(econ154_01, econ102).
+class_meets(econ154_01, "", tues, 935, 1050).
+class_meets(econ154_01, "", thurs, 935, 1050).
+
+
+
+
+
+class(econ157_01). 
+class_name(econ157_01, "Corporate Finance").
+class_prof(econ157_01, "Michelle Zemel").
+class_dept(econ157_01, econ).
+class_rating(econ157_01, 42)
+class_credits(econ157_01, 10).
+class_type(econ157_01, elective).
+class_workload(econ157_01, 60).
+prerequisite(econ157_01, econ57).
+prerequisite(econ157_01, econ102).
+prerequisite(econ157_01, econ117).
+class_meets(econ157_01, "", tues, 1315, 1430).
+class_meets(econ157_01, "", thurs, 1315, 1430).
+
+
+class(econ159_01). 
+class_name(econ159_01, "Economics of the Public Sector").
+class_prof(econ159_01, "Emiliano Huet-Vaughn").
+class_dept(econ159_01, econ).
+class_rating(econ159_01, 46)
+class_credits(econ159_01, 10).
+class_type(econ159_01, elective).
+class_workload(econ159_01, 36).
+prerequisite(econ159_01, econ102).
+class_meets(econ159_01, "", tues, 1445, 1600).
+class_meets(econ159_01, "", thurs, 1445, 1600).
+
+
+
+class(econ190_01). 
+class_name(econ190_01, "Senior Seminar in Economics").
+class_prof(econ190_01, "Eleanor Brown").
+class_dept(econ190_01, econ).
+class_rating(econ190_01, 36)
+class_credits(econ190_01, 10).
+class_type(econ190_01, core).
+class_workload(econ190_01, 36).
+prerequisite(econ190_01, econ101).
+prerequisite(econ190_01, econ102).
+prerequisite(econ190_01, econ107).
+class_meets(econ190_01, "", mon, 1315, 1430).
+class_meets(econ190_01, "", wed, 1315, 1430).
+
+class(econ190_02). 
+class_name(econ190_02, "Senior Seminar in Economics").
+class_prof(econ190_02, "Malte Dold").
+class_dept(econ190_02, econ).
+class_rating(econ190_02, 36)
+class_credits(econ190_02, 10).
+class_type(econ190_02, core).
+class_workload(econ190_02, 63).
+prerequisite(econ190_02, econ101).
+prerequisite(econ190_02, econ102).
+prerequisite(econ190_02, econ107).
+class_meets(econ190_02, "", mon, 1315, 1430).
+class_meets(econ190_02, "", wed, 1315, 1430).
+
+class(econ190_03). 
+class_name(econ190_03, "Senior Seminar in Economics").
+class_prof(econ190_03, "Michael Kuehlwein").
+class_dept(econ190_03, econ).
+class_rating(econ190_03, 36)
+class_credits(econ190_03, 10).
+class_type(econ190_03, core).
+class_workload(econ190_03, 63).
+prerequisite(econ190_03, econ101).
+prerequisite(econ190_03, econ102).
+prerequisite(econ190_03, econ107).
+class_meets(econ190_03, "", mon, 1315, 1430).
+class_meets(econ190_03, "", wed, 1315, 1430).
+
+class(econ190_04). 
+class_name(econ190_04, "Senior Seminar in Economics").
+class_prof(econ190_04, "Gary Smith").
+class_dept(econ190_04, econ).
+class_rating(econ190_04, 36)
+class_credits(econ190_04, 10).
+class_type(econ190_04, core).
+class_workload(econ190_04, 63).
+prerequisite(econ190_04, econ101).
+prerequisite(econ190_04, econ102).
+prerequisite(econ190_04, econ107).
+class_meets(econ190_04, "", mon, 1315, 1430).
+class_meets(econ190_04, "", wed, 1315, 1430).
