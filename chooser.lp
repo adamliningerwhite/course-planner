@@ -11,18 +11,19 @@
 
 % Make a schedule set with class_num number of classes
 % Class num comes from student input
-Num {picked_class(C) : class(C)} Num :- class_num(Num).
+Num {picked_class(C) : class(C)} Num :- num_classes(Num).
 
- % meets_at(C, Day, Start, End) :- picked_class(C), class_meets(C, _, Day, Start, End).
- % picked_name(Name) :- picked_class(C), class_name(C, Name).
- % picked_workload(H) :- picked_class(C), class_workload(C, H).
- % picked_rating(R) :- picked_class(C), class_rating(C, R).
+% These are constraints you can search for in results.txt to see if our program is working
+meets_at(C, Day, Start, End) :- picked_class(C), class_meets(C, _, Day, Start, End).
+picked_name(Name) :- picked_class(C), class_name(C, Name).
+picked_workload(H) :- picked_class(C), class_workload(C, H).
+picked_rating(R) :- picked_class(C), class_rating(C, R).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%        Schedule Constraints       %%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% C1: Don't schedule two classes with the same name
+% % C1: Don't schedule two classes with the same name
 :- picked_class(C1), picked_class(C2), class_name(C1, Name1), class_name(C2, Name2), C1 != C2, Name1 = Name2.
 
 % --------------------------------------------------------------------------
@@ -129,7 +130,7 @@ electives_assigned(Dept, Num) :-
   Num = #sum {
     1, C : picked_class(C), class_dept(C, Dept), class_type(C, elective)
   }.
-:- major(Dept), electives_assigned(Dept, Num1), elective_num(Dept, Num2), Num1 < Num2.
+:- major(Dept), electives_assigned(Dept, Num1), elective_num(Num2), Num1 < Num2.
 
 % --------------------------------------------------------------------------
 

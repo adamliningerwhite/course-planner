@@ -171,7 +171,8 @@ public class InputWindow {
 						pickedClasses[index] = word;
 						classCtr++;
 					  } else if (word.equals(unsat)) {
-						return new String[] {unsat};
+						String result = unsat + ":  Please soften constraints and make sure all fields are filled.";
+						return new String[] {result};
 					  }
 					}	
 				}
